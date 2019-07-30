@@ -13,3 +13,5 @@
 - Maybe add something about "Service Meshes beyond microservices"?
 
 - Add additional example to "Example" in the "How to Dig Deeper" section.
+
+- Add Kiali to the example?
