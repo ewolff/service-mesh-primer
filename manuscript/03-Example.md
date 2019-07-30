@@ -523,8 +523,6 @@ discuss:
 	  Kiali, see the [Kiali
   task](https://istio.io/docs/tasks/telemetry/kiali/). 
 
-- Other examples / tutorials
-
 This 
 [example](https://istio.io/docs/tasks/telemetry/metrics-logs/)
 discusses how Istio support logs,
