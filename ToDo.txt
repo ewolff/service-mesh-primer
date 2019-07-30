@@ -1,0 +1,15 @@
+- Add some basic information about monitoring and tracing to chapter 1
+  (?) and create a crossreference from chapter 3 (example).
+
+- Mention optimizations i.e. async communication in the control plane
+
+- At the moment, the example chapter explains the circuit
+  breaker. Should that stay this way or shall we change it?
+
+- We could add the challenges, advantages, and conclusion that the
+  "Practical Microservices" book mentions in chapter 23 to the
+  conclusion.
+
+- Maybe add something about "Service Meshes beyond microservices"?
+
+- Add additional example to "Example" in the "How to Dig Deeper" section.
