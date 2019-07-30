@@ -19,7 +19,7 @@ interface to the user, too.
 {id="example-overview"}
 ![Figure 3.1: Overview of the Example](images/example-overview.png)
 
-[Figure 3.1](#fig-service-mesh-ueberblick) shows the structure of the
+[Figure 3.1](#example-overview) shows the structure of the
 example:
 
 * Istio provides the *Ingress Gateway*. It forwards HTTP requests to
@@ -205,7 +205,7 @@ trace for a request to the shipping microservice. The
 user started a poll for new data on the order microservice. Then the
 service contacted the Istio Mixer to make sure the policies are enforced.
 
-{id="example-dependencies", width="50%"}
+{id="example-tracing-dependencies", width="50%"}
 ![Figure 3.5: Jaeger Dependencies](images/example-tracing-dependencies.png)
 
 [Figure 3.5](#example-tracing-dependencies) shows a different type of
@@ -238,7 +238,7 @@ header have to be configured.
 Other languages require different means to forward the HTTP
 headers.
 
-## Logging {#example-logging}
+## Logging {#section-example-logging}
 
 Mixer can forward information about each HTTP request to a logging
 infrastructure. That information can be used to analyze, for example,
@@ -256,7 +256,7 @@ infrastructure uses Elasticsearch to store logs and Kibana to analyze
 them.
 
 {id="example-logging"}
-![Figure 3.6: Logging in the Example](images/service-mesh-logging.png)
+![Figure 3.6: Logging in the Example](images/example-logging.png)
 
 [Figure 3.6](#example-logging) shows how logging is implemented in the
 example. Each microservice must directly write JSON data to the
