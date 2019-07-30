@@ -70,13 +70,13 @@ pod it says `2/2`:
 
 {linenos=off}
 ~~~~~~~~
-[~/microservice-istio/microservice-istio-demo]kubectl get pods
-NAME                        READY   STATUS    RESTARTS   AGE
-apache-7f7f7f79c6-jbqx8      2/2     Running   0          8m51s
-invoicing-77f69ff854-rpcbk   2/2     Running   0          8m43s
-order-cc7f8866-9zbnf         2/2     Running   0          8m43s
-postgres-5ddddbbf8f-xfng5    2/2     Running   0          8m51s
-shipping-5d58798cdd-9jqj8    2/2     Running   0          8m43s
+[~/microservice-istio]kubectl get pods
+NAME                READY STATUS  RESTARTS AGE
+apache-7f7f7f79c6    2/2  Running 0        8m51s
+invoicing-77f69ff854 2/2  Running 0        8m43s
+order-cc7f8866       2/2  Running 0        8m43s
+postgres-5ddddbbf8f  2/2  Running 0        8m51s
+shipping-5d58798cdd  2/2  Running 0        8m43s
 ~~~~~~~~
 
 So while there is just one Docker container configured for each
