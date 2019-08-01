@@ -13,10 +13,7 @@
 
 - Add additional example to "Example" in the "How to Dig Deeper" section.
 
-
 - Add Kiali to the example?
-
-- Istio Alternatives and their differences (Linkerd 2, Consul, AWS App Mesh)
 
 - Service Mesh Interface
 

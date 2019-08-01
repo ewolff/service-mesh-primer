@@ -1,4 +1,4 @@
-# Example {#chapter-example}
+# Example with Istio {#chapter-example}
 
 Typically, an example that shows a technology in action is a great way
 to understand how it actually works. This chapters shows a system
