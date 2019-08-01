@@ -63,7 +63,8 @@ information about the microservices.
 
 #### Sidecar
 
-As mentioned above, the idea behind a *sidecar* is to add another
+As mentioned in [chapter 1](#chapter-what), the idea behind a
+*sidecar* is to add another
 Docker container to each Kubernetes pod. Actually, if you list the
 Kubernetes pods with `kubectl get pods`, you will notice that for each
 pod it says `2/2`:
@@ -99,15 +100,11 @@ microservice through these proxies as described in [chapter
 
 ## Monitoring with Prometheus and Grafana {#section-example-monitoring}
 
-A microservices system should include a monitoring infrastructure that
-collects monitoring information from all microservices and makes them
-accessible. This is required to keep track of the metrics for the huge
-number of distributed microservices. You can implement alarms and
-analysis based on these metrics. As mentioned above, Istio can already
+As mentioned in [section 2.1](#section-why-monitoring), a service mesh
 provide basic monitoring information without any additional
 effort. Istio includes *[Prometheus](https://prometheus.io/)* to store
 metrics for analysis. Istio also includes
-*[Grafana](https://grafana.com/)*. This is a tools for the analysis of
+*[Grafana](https://grafana.com/)*; a tools for the analysis of
 the metrics.
   
 Of course, this approach supports only metrics that the proxy can
@@ -117,26 +114,6 @@ Kubernetes infrastructure -- for example, CPU utilization -- can be
 measured. However, data about the internal state of the microservice
 is not measured. To get that data, the microservice would need to
 report it to the monitoring infrastructure.
-
-#### Monitoring
-
-The example uses only the metrics provided by the proxies and the
-Kubernetes infrastructure for monitoring. This approach has some
-benefits:
-
-* It has no impact on the code of the microservice whatsoever. Metrics
-  are 
-  measured only by the proxy, so any microservice will report the same
-  metrics -- no matter in what programming language they are written
-  or which framework they use.
-
-* The metrics give a good impression about the state of the
-  microservice. The metrics show the performance and reliability that
-  a user or client would see. This is enough to ensure that service
-  level agreements and quality of service is met.
-  
-So the metrics provided by Istio might be enough to manage a
-microservices system.
 
 #### Prometheus
 
@@ -184,14 +161,15 @@ consumption or CPU utilization. The Istio mesh dashboard shows a
 global metric about the number of requests the service mesh processes
 and their success rates.
 
+So just by installing Istio, basic monitoring for all microservices is
+already in place.
+
 ## Tracing {#section-example-tracing}
 
+As explained in [section 2.1](#section-why-monitoring), tracing might
+be important to trace calls across microservices and do a root cause
+analysis based on that information.
 For tracing, Istio uses [Jaeger](https://www.jaegertracing.io/).
-
-Tracing solves a common problem in microservices systems.
-A request to a microservice might result in other requests.
-Tracing helps to understand these dependencies, thus facilitating root
-cause analysis.
 
 The documentation of the example contains a
 [section](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#tracing)
@@ -257,7 +235,9 @@ explains how to use Kiali for the example.
 
 ## Logging {#section-example-logging}
 
-Mixer can forward information about each HTTP request to a logging
+As explained in [section 3.2](#section-why-logging), service meshes
+are of little help for logging. However,
+Istio can forward information about each HTTP request to a logging
 infrastructure. That information can be used to analyze, for example,
 the number of requests to certain URLs and status codes.  A lot of
 statistics for web sites rely on this kind of information.
@@ -297,16 +277,6 @@ implementation by searching for log entries with severity error. Also
 logging each HTTP request adds little value.  Information about the
 HTTP requests is probably already included in the logs of the
 microservices.
-
-Generally speaking, Istio's logging support has the advantage that
-developers do not have to care about these logs at all. Also, the logs
-are uniform no matter what kind of technology is used in the
-microservices and how they log. Enforcing a common logging approach
-and logging format takes some effort. This is particularly true for
-microservices that use different technologies. So although Istio's
-logs might not include information from inside the microservices, they
-are easy to get. Such a log might be better than no log at all or no
-uniform log.
 
 ## Resilience {#service-mesh-resilience}
 
