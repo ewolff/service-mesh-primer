@@ -13,3 +13,11 @@
 - Maybe add something about "Service Meshes beyond microservices"?
 
 - Add additional example to "Example" in the "How to Dig Deeper" section.
+
+- Istio Alternatives and their differences (Linkerd 2, Consul, AWS App Mesh)
+
+- Service Mesh Interface
+
+- Tools on Top of Service Mesh: KubeCost, Flagger, Solo.io Tools, Dashboards (Kiali)
+
+- Mesh Expansion / Multicluster / Non-K8s Environment with Service Mesh
