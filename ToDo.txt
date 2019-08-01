@@ -1,7 +1,5 @@
 - Create cross references from chapter 3 to chapter 2 (example).
 
-- Mention optimizations i.e. async communication in the control plane
-
 - At the moment, the example chapter explains the circuit
   breaker. Should that stay this way or shall we change it?
 

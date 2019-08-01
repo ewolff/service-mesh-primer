@@ -14,3 +14,6 @@ incl canary
 
 ## Security {#section-why-security}
 
+## Performance Impact {#section-why-performance}
+
+Mention optimizations i.e. async communication in the control plane
