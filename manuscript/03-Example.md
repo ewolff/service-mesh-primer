@@ -252,7 +252,7 @@ For the example, a custom log infrastructure was set up. This
 infrastructure uses Elasticsearch to store logs and Kibana to analyze
 them.
 
-{id="fig-example-logging"}
+{id="fig-example-logging", width="50%"}
 ![Figure 4.7: Logging in the Example](images/example-logging.png)
 
 [Figure 4.7](#fig-example-logging) shows how logging is implemented in the
