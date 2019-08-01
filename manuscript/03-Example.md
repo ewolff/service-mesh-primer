@@ -16,10 +16,10 @@ microservice will use the data about the order to create a
 shipment. The invoicing and the shipping microservice present a web
 interface to the user, too.
 
-{id="example-overview"}
+{id="fig-example-overview"}
 ![Figure 3.1: Overview of the Example](images/example-overview.png)
 
-[Figure 3.1](#example-overview) shows the structure of the
+[Figure 3.1](#fig-example-overview) shows the structure of the
 example:
 
 * Istio provides the *Ingress Gateway*. It forwards HTTP requests to
@@ -144,11 +144,11 @@ The [documentation of the
 example](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#prometheus)
 contains information how to run Prometheus in the example.
 
-{id="example-prometheus", width=65%}
+{id="fig-example-prometheus", width=65%}
 ![Figure 3.2: Prometheus with Istio Metrics](images/example-prometheus.png)
 
 Prometheus stores all metrics and also provides a simple UI to analyze
-the metrics.  [Figure 3.2](#example-prometheus) shows the
+the metrics.  [Figure 3.2](#fig-example-prometheus) shows the
 byte count for requests and the different destinations: the order
 microservice and also the Istio component that measures the telemetry
 data.
@@ -166,11 +166,11 @@ installation of Grafana. The
 explains how to use Grafana with the example.
 
 
-{id="example-grafana", width=65%}
+{id="fig-example-grafana", width=65%}
 ![Figure 3.3: Grafana with Istio Dashboard](images/example-grafana.png)
 
 The Grafana installation in Istio provides predefined
-dashboards. [Figure 3.3](#example-grafana) shows an example
+dashboards. [Figure 3.3](#fig-example-grafana) shows an example
 of the Istio service dashboard. It uses the shipping
 microservice. The dashboard shows metrics such as the request
 volume, the success
@@ -197,18 +197,18 @@ The documentation of the example contains a
 [section](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#tracing)
 about tracing.
 
-{id="example-tracing", width="50%"}
+{id="fig-example-tracing", width="50%"}
 ![Figure 3.4: Jaeger Trace](images/example-tracing.png)
 
-[Figure 3.4](#example-tracing) shows an example of a
+[Figure 3.4](#fig-example-tracing) shows an example of a
 trace for a request to the shipping microservice. The
 user started a poll for new data on the order microservice. Then the
 service contacted the Istio Mixer to make sure the policies are enforced.
 
-{id="example-tracing-dependencies", width="50%"}
+{id="fig-example-tracing-dependencies", width="50%"}
 ![Figure 3.5: Jaeger Dependencies](images/example-tracing-dependencies.png)
 
-[Figure 3.5](#example-tracing-dependencies) shows a different type of
+[Figure 3.5](#fig-example-tracing-dependencies) shows a different type of
 information Jaeger provides: the dependencies between the
 microservices. Shipping and invoicing use order to receive the
 information about the latest orders. Order reports metrics to
@@ -247,7 +247,7 @@ generating dependency graphs of microservices. It also shows traffic
 rates, latencies, and health of the services. That way, it provides a
 great overview of the microservices and their relationships.
 
-{id="example-kiali", width="50%"}
+{id="fig-example-kiali", width="50%"}
 ![Figure 3.6: Dependencies in Kiali](images/example-kiali.png)
 
 The
@@ -271,10 +271,10 @@ For the example, a custom log infrastructure was set up. This
 infrastructure uses Elasticsearch to store logs and Kibana to analyze
 them.
 
-{id="example-logging"}
+{id="fig-example-logging"}
 ![Figure 3.7: Logging in the Example](images/example-logging.png)
 
-[Figure 3.7](#example-logging) shows how logging is implemented in the
+[Figure 3.7](#fig-example-logging) shows how logging is implemented in the
 example. Each microservice must directly write JSON data to the
 Elasticsearch server. So there is no need to write any log files which
 makes the system easier to handle. The need to parse the log
