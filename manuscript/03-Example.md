@@ -17,9 +17,9 @@ shipment. The invoicing and the shipping microservice present a web
 interface to the user, too.
 
 {id="fig-example-overview"}
-![Figure 3.1: Overview of the Example](images/example-overview.png)
+![Figure 4.1: Overview of the Example](images/example-overview.png)
 
-[Figure 3.1](#fig-example-overview) shows the structure of the
+[Figure 4.1](#fig-example-overview) shows the structure of the
 example:
 
 * Istio provides the *Ingress Gateway*. It forwards HTTP requests to
@@ -122,10 +122,10 @@ example](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#
 contains information how to run Prometheus in the example.
 
 {id="fig-example-prometheus", width=65%}
-![Figure 3.2: Prometheus with Istio Metrics](images/example-prometheus.png)
+![Figure 4.2: Prometheus with Istio Metrics](images/example-prometheus.png)
 
 Prometheus stores all metrics and also provides a simple UI to analyze
-the metrics.  [Figure 3.2](#fig-example-prometheus) shows the
+the metrics.  [Figure 4.2](#fig-example-prometheus) shows the
 byte count for requests and the different destinations: the order
 microservice and also the Istio component that measures the telemetry
 data.
@@ -144,10 +144,10 @@ explains how to use Grafana with the example.
 
 
 {id="fig-example-grafana", width=65%}
-![Figure 3.3: Grafana with Istio Dashboard](images/example-grafana.png)
+![Figure 4.3: Grafana with Istio Dashboard](images/example-grafana.png)
 
 The Grafana installation in Istio provides predefined
-dashboards. [Figure 3.3](#fig-example-grafana) shows an example
+dashboards. [Figure 4.3](#fig-example-grafana) shows an example
 of the Istio service dashboard. It uses the shipping
 microservice. The dashboard shows metrics such as the request
 volume, the success
@@ -176,17 +176,17 @@ The documentation of the example contains a
 about tracing.
 
 {id="fig-example-tracing", width="50%"}
-![Figure 3.4: Jaeger Trace](images/example-tracing.png)
+![Figure 4.4: Jaeger Trace](images/example-tracing.png)
 
-[Figure 3.4](#fig-example-tracing) shows an example of a
+[Figure 4.4](#fig-example-tracing) shows an example of a
 trace for a request to the shipping microservice. The
 user started a poll for new data on the order microservice. Then the
 service contacted the Istio Mixer to make sure the policies are enforced.
 
 {id="fig-example-tracing-dependencies", width="50%"}
-![Figure 3.5: Jaeger Dependencies](images/example-tracing-dependencies.png)
+![Figure 4.5: Jaeger Dependencies](images/example-tracing-dependencies.png)
 
-[Figure 3.5](#fig-example-tracing-dependencies) shows a different type of
+[Figure 4.5](#fig-example-tracing-dependencies) shows a different type of
 information Jaeger provides: the dependencies between the
 microservices. Shipping and invoicing use order to receive the
 information about the latest orders. Order reports metrics to
@@ -224,10 +224,10 @@ the dependencies between the microservices. However,
 generating dependency graphs of microservices. It also shows traffic
 rates, latencies, and health of the services. That way, it provides a
 great overview of the microservices and their relationships. [Figure
-3.6](#fig-example-kiali) shows an example of a dependency graph.
+4.6](#fig-example-kiali) shows an example of a dependency graph.
 
 {id="fig-example-kiali", width="70%"}
-![Figure 3.6: Dependencies in Kiali](images/example-kiali.png)
+![Figure 4.6: Dependencies in Kiali](images/example-kiali.png)
 
 The
 [documentation](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#kiali)
@@ -235,7 +235,7 @@ explains how to use Kiali for the example.
 
 ## Logging {#section-example-logging}
 
-As explained in [section 3.2](#section-why-logging), service meshes
+As explained in [section 4.2](#section-why-logging), service meshes
 are of little help for logging. However,
 Istio can forward information about each HTTP request to a logging
 infrastructure. That information can be used to analyze, for example,
@@ -253,9 +253,9 @@ infrastructure uses Elasticsearch to store logs and Kibana to analyze
 them.
 
 {id="fig-example-logging"}
-![Figure 3.7: Logging in the Example](images/example-logging.png)
+![Figure 4.7: Logging in the Example](images/example-logging.png)
 
-[Figure 3.7](#fig-example-logging) shows how logging is implemented in the
+[Figure 4.7](#fig-example-logging) shows how logging is implemented in the
 example. Each microservice must directly write JSON data to the
 Elasticsearch server. So there is no need to write any log files which
 makes the system easier to handle. The need to parse the log
@@ -286,7 +286,7 @@ could bring down the complete microservices system.
 
 #### Measuring Resilience with Istio
 
-As explained in [section 3.2](#section-why-resilience), failure
+As explained in [section 4.2](#section-why-resilience), failure
 cascades can happen if a called microservice returns an
 error. It could be even worse if the called microservices does return
 successfully but takes a long time. In that case, resources such as
@@ -335,7 +335,7 @@ resilient.
 
 Fault and delay injection are just useful to test the resilience of a
 system. However, as explained in [section
-3.2](#section-why-resilience) circuit breaker are one way to actually
+4.2](#section-why-resilience) circuit breaker are one way to actually
 make a system
 more resilient. 
 
@@ -402,7 +402,7 @@ microservice.
 ##### Retry and Timeout
 
 Retries and timeouts as explained in [section
-3.2](#section-why-resilience) can be defined in the same part of
+4.2](#section-why-resilience) can be defined in the same part of
 the Istio configuration. That makes it easy to define a timeout per
 retry and a maximum time span that all retries together might take.
 
