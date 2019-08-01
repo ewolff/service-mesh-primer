@@ -15,8 +15,6 @@
 
 - Add Kiali to the example?
 
-- Service Mesh Interface
-
 - Tools on Top of Service Mesh: KubeCost, Flagger, Solo.io Tools, Dashboards (Kiali)
 
 - Mesh Expansion / Multicluster / Non-K8s Environment with Service Mesh

@@ -8,3 +8,6 @@ This architecture adds powerful features like monitoring, circuit breaking, cana
 
 {id="01-architecture}
 ![Figure 1.1 - Service Mesh Architecture](images/service_mesh_architecture.png)
+
+
+## Service Mesh Interface {#section-what-interface}
