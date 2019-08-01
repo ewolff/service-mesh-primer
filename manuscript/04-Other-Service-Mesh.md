@@ -2,8 +2,8 @@
 
 The first service mesh was Linkerd, developed in 2015 by the startup Buoyant. Although having been adopted in larg production systems, the software was too complex to configure for many users. In 2017, Google and IBM joined forces to create the Istio Service Mesh after they found out they have been working on similar ideas. The public attention Istio enjoyed through Google and IBM as main contributors was amplified by media campaigns and conference talks. By the end of 2017, Linkerd announed a new, more opinionated service mesh only for Kubernetes that was first named Conduit and later Linkerd 2. By 2018, the term Service Mesh was ubiquitous and more players joined the party. Consul was first turned into a service mesh and AWS announced their own Service Mesh implementation AWS App Mesh.
 
-## Linkerd 2 {#section-linkerd2}
+## Linkerd 2 {#section-other-linkerd2}
 
-## Consul {#section-consul}
+## Consul {#section-other-consul}
 
-## AWS App Mesh {#section-aws-app-mesh}
+## AWS App Mesh {#section-other-aws-app-mesh}
