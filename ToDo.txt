@@ -21,3 +21,4 @@
   service meshes?
 
 - Would we talk about alternatives? i.e. libraries?
+  Add to 02-Why (EW)
