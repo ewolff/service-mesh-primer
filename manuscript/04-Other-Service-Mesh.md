@@ -7,3 +7,5 @@ The first service mesh was Linkerd, developed in 2015 by the startup Buoyant. Al
 ## Consul {#section-other-consul}
 
 ## AWS App Mesh {#section-other-aws-app-mesh}
+
+## When to Choose Which? {#section-other-choose}
