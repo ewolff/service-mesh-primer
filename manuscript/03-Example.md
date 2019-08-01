@@ -245,9 +245,10 @@ the dependencies between the microservices. However,
 [Kiali](https://www.kiali.io/) is a tool that is specialized in
 generating dependency graphs of microservices. It also shows traffic
 rates, latencies, and health of the services. That way, it provides a
-great overview of the microservices and their relationships.
+great overview of the microservices and their relationships. [Figure
+3.6](#fig-example-kiali) shows an example of a dependency graph.
 
-{id="fig-example-kiali", width="50%"}
+{id="fig-example-kiali", width="70%"}
 ![Figure 3.6: Dependencies in Kiali](images/example-kiali.png)
 
 The
