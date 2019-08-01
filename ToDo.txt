@@ -7,13 +7,11 @@
   "Practical Microservices" book mentions in chapter 23 to the
   conclusion.
 
-- Maybe add something about "Service Meshes beyond microservices"?
-
 - Add additional example to "Example" in the "How to Dig Deeper" section.
 
 - Add Kiali to the example?
 
-- Tools on Top of Service Mesh: KubeCost, Flagger, Solo.io Tools, Dashboards (Kiali)
+- Optional: Tools on Top of Service Mesh: KubeCost, Flagger, Solo.io Tools, Dashboards (Kiali)
 
-- Mesh Expansion / Multicluster / Non-K8s Environment with Service Mesh
+- Optional: Mesh Expansion / Multicluster / Non-K8s Environment with Service Mesh
 
