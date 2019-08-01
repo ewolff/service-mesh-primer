@@ -17,8 +17,5 @@
 
 - Add links to other primers and books (EW)
 
-- Would we need to add information about how Google originally used
-  service meshes?
-
 - Would we talk about alternatives? i.e. libraries?
   Add to 02-Why (EW)
