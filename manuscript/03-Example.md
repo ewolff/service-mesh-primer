@@ -316,7 +316,8 @@ could bring down the complete microservices system.
 
 #### Measuring Resilience with Istio
 
-Failure cascades can happen if a called microservice returns an
+As explained in [section 3.2](#section-why-resilience), failure
+cascades can happen if a called microservice returns an
 error. It could be even worse if the called microservices does return
 successfully but takes a long time. In that case, resources such as
 threads might be blocked while waiting for a reply. In the worst case,
@@ -363,15 +364,10 @@ resilient.
 #### Implementing Resilience with Istio
 
 Fault and delay injection are just useful to test the resilience of a
-system. However, circuit breaker are one way to actually make a system
-more resilient. A conventional circuit breaker would cut a circuit if
-the circuit is shorten. That protects the circuit from overheating.
-
-Circuit breakers in software systems do something similar: They
-protect a part of the system by cutting off some of the traffic.
-Because Istio adds proxies to the communication between the
-microservices, you can add a circuit breaker without changing the
-code.
+system. However, as explained in [section
+3.2](#section-why-resilience) circuit breaker are one way to actually
+make a system
+more resilient. 
 
 {linenos=off, lang="yaml"}
 ~~~~~~~~
@@ -435,16 +431,10 @@ microservice.
 
 ##### Retry and Timeout
 
-If a called microservice fails, the calling microservice should not
-fail to achieve resilience. Istio provides two measures ensure this:
-
-* *Retries* repeat the failed requests. If the failure is transient,
-  this can make the request succeed.
-  
-* *Timeouts* make sure that the calling microservice is not blocked
-  for too long. Otherwise, if all threads are blocked, the calling
-  microservice might not be able
-  to accept any more requests.
+Retries and timeouts as explained in [section
+3.2](#section-why-resilience) can be defined in the same part of
+the Istio configuration. That makes it easy to define a timeout per
+retry and a maximum time span that all retries together might take.
 
 {linenos=off, lang="yaml"}
 ~~~~~~~~

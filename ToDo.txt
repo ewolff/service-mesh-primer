@@ -1,8 +1,5 @@
 - Create cross references from chapter 3 to chapter 2 (example). (EW)
 
-- Add explanation for circuit breaker to resilience in why, remove
-  from example chapter (EW)
-
 - We could add the challenges, advantages, and conclusion that the
   "Practical Microservices" book mentions in chapter 23 to the
   conclusion. (EW after HP wrote the conclusion)
