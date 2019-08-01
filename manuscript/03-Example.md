@@ -1,4 +1,4 @@
-# Example with Istio {#chapter-example}
+# Example with Istio  {#chapter-example}
 
 Typically, an example that shows a technology in action is a great way
 to understand how it actually works. This chapters shows a system
@@ -238,6 +238,22 @@ header have to be configured.
 Other languages require different means to forward the HTTP
 headers.
 
+## Visualization with Kiali
+
+With the information from the tracing, Jaeger can provide a graph with
+the dependencies between the microservices. However,
+[Kiali](https://www.kiali.io/) is a tool that is specialized in
+generating dependency graphs of microservices. It also shows traffic
+rates, latencies, and health of the services. That way, it provides a
+great overview of the microservices and their relationships.
+
+{id="example-kiali", width="50%"}
+![Figure 3.6: Dependencies in Kiali](images/example-kiali.png)
+
+The
+[documentation](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#kiali)
+explains how to use Kiali for the example.
+
 ## Logging {#section-example-logging}
 
 Mixer can forward information about each HTTP request to a logging
@@ -256,9 +272,9 @@ infrastructure uses Elasticsearch to store logs and Kibana to analyze
 them.
 
 {id="example-logging"}
-![Figure 3.6: Logging in the Example](images/example-logging.png)
+![Figure 3.7: Logging in the Example](images/example-logging.png)
 
-[Figure 3.6](#example-logging) shows how logging is implemented in the
+[Figure 3.7](#example-logging) shows how logging is implemented in the
 example. Each microservice must directly write JSON data to the
 Elasticsearch server. So there is no need to write any log files which
 makes the system easier to handle. The need to parse the log

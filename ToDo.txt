@@ -10,8 +10,6 @@
 - Optional: Add additional example to "Example" in the "How to Dig Deeper"
   section. 
 
-- Add Kiali to the example? (EW)
-
 - Optional: Tools on Top of Service Mesh: KubeCost, Flagger, Solo.io Tools, Dashboards (Kiali)
 
 - Optional: Mesh Expansion / Multicluster / Non-K8s Environment with Service Mesh
