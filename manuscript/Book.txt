@@ -2,5 +2,5 @@
 01-What-Is-A-Service-Mesh.md
 02-Why-Service-Meshes.md
 03-Example.md
-04-More-Features.md
+04-Other-Service-Mesh.md
 05-Conclusion.md
