@@ -1,4 +1,4 @@
-# What is a Service Mesh? {#chapter-what-is-a-service-mesh}
+# What is a Service Mesh? {#chapter-what}
 
 A Service Mesh is a dedicated infrastructure component that facilitates observing, controlling, and securing communication between services. Unlike earlier approaches such as Enterprise Service Buses (ESBs) or API Gateways, a service mesh embraces the distributed nature of modern microservice applications. 
 
