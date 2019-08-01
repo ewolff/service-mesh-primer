@@ -1,5 +1,4 @@
-- Add some basic information about monitoring and tracing to chapter 1
-  (?) and create a crossreference from chapter 3 (example).
+- Create cross references from chapter 3 to chapter 2 (example).
 
 - Mention optimizations i.e. async communication in the control plane
 
