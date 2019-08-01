@@ -9,8 +9,6 @@
 
 - Optional: Mesh Expansion / Multicluster / Non-K8s Environment with Service Mesh
 
-- EW 02 / 03
-
 - HP 01 / 04 / 05
 
 - Add links to other primers and books (EW)
