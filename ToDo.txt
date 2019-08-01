@@ -1,7 +1,7 @@
 - Create cross references from chapter 3 to chapter 2 (example).
 
-- At the moment, the example chapter explains the circuit
-  breaker. Should that stay this way or shall we change it?
+- Add explanation for circuit breaker to resilience in why, remove
+  from example chapter
 
 - We could add the challenges, advantages, and conclusion that the
   "Practical Microservices" book mentions in chapter 23 to the
