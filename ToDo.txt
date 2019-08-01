@@ -14,3 +14,5 @@
 - EW 02 / 03
 
 - HP 01 / 04 / 05
+
+- Fix numbering for figure in chapter 4 (EW)
