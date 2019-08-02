@@ -494,12 +494,6 @@ discuss:
   the traffic. Mirroring can be used to make sure that the new and the
   old version behave in the same way.
   
-- Istio can also create graphs of the [dependencies between the
-  microservices](https://istio.io/docs/tasks/telemetry/servicegraph/). Istio
-  even provides a specific tool to visualize the service mesh called
-	  Kiali, see the [Kiali
-  task](https://istio.io/docs/tasks/telemetry/kiali/). 
-
 This 
 [example](https://istio.io/docs/tasks/telemetry/metrics-logs/)
 discusses how Istio support logs,
