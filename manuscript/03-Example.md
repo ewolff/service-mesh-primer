@@ -222,8 +222,12 @@ With the information from the tracing, Jaeger can provide a graph with
 the dependencies between the microservices. However,
 [Kiali](https://www.kiali.io/) is a tool that is specialized in
 generating dependency graphs of microservices. It also shows traffic
-rates, latencies, and health of the services. That way, it provides a
-great overview of the microservices and their relationships. [Figure
+rates, latencies, and health of the services.  That way, it provides
+not just a great overview of the microservices and their relationships
+but also information about how they are communicating with each
+other. That makes it clearer what the status of the dependencies is
+and what is going on where in the microservices system.
+[Figure
 4.6](#fig-example-kiali) shows an example of a dependency graph.
 
 {id="fig-example-kiali", width="70%"}
