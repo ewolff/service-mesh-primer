@@ -12,6 +12,3 @@
 - HP 01 / 04 / 05
 
 - Add links to other primers and books (EW)
-
-- Would we talk about alternatives? i.e. libraries?
-  Add to 02-Why (EW)

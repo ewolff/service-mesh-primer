@@ -246,6 +246,43 @@ memory and CPU. However, hardware is becoming cheaper constantly and
 adding some hardware resources to improve the reliability of a system
 might be acceptable.
 
+## Alternatives to Service Meshes {#section-why-alternatives}
+
+While services meshes provide a lot of features, there are also
+alternatives. Monitoring, logging, and resilience can be implemented
+as part of a microservice. There are numerous libraries that support
+the implementation of these features. However, an infrastructure to
+collect the monitoring and logging data still has to be setup. Also
+libraries are only available for specific programming languages or
+platforms. So if a microservice should be implemented in a different
+programming language or on a different platform, another library must
+be used. That is an additional effort and makes it harder to use
+different technologies in the microservices. However, because there
+are no proxies involved, the performance might be better. Also
+libraries don't rely on a modification to the infrastructure. So if
+just a few microservices should include the features mentioned above,
+libraries might be the better solution because the behavior of the
+infrastructure and therefore of all other microservices are not
+modified at all. Also in same cases developers can not modify the
+infrastructure because a different part of the organization or even a
+different organization manages it.
+
+For routing technologies such as reverse proxies or API gateways might
+be alternatives. They are specialized in providing just these
+features. Limiting the feature set might make them easier to handle
+than a service mesh. However, it also means that they do not provide
+all the other features a service mesh has to offer.
+
+For security, an infrastructure that provides certificates must be set
+up, certificates must be distributed, and the communication must be
+encrypted. While there are alternatives, they also require a
+modification to the infrastructure and have a limited set of
+features. Also non-authorized microservices must not be able to get
+certificates from the infrastructure. Service meshes control the
+proxies that need to receive the certificates. So it is quite easy for
+a service mesh to ensure that certificates are distributed securely
+because the control all of parts of the communication infrastructure.
+
 ## Conclusion {#section-why-conclusion}
 
 Service meshes are based on a rather simple idea: Add proxies to the
