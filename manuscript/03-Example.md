@@ -6,6 +6,24 @@ consisting of multiple microservices and shows how a service mesh can
 add value to a microservices architecture. The example runs on
 Kubernetes and uses Istio as a service mesh.
 
+## Istio
+
+Istio is the most popular service mesh tool, developed by Google and IBM. Just like Kubernetes is a Open Source reimplementation of a Google internal workload orchestrator, Google's internal API & Service Management System is the ancestor of Istio. Istio implements all service mesh features described in the previous chapter such as metrics, logging, tracing, traffic routing, circuit breaking, mTLS and authorization. Although Istio is designed to be platform-independent, it started with first class support for Kubernetes. Other platforms will follow soon.
+
+The image also reflects how the service mesh is located between the orchestrator (top) and the application (bottom). Istio integrates with many existing technologies such as Envoy as service proxy for the data plane. The three core components of Istio make up the control plane: Pilot, Mixer and Citadel. They communicate with the envoy proxies to distribute configurations, receive recorded network traffic/telemetry data , or manage certificates.
+
+{id="fig-example-istio"}
+
+![Istio Architecture](images/05_istio_full.png)
+
+<!--TODO: Galley in Istio Architektur übernehmen--> 
+
+In addition to the typical service mesh control and data plane, Istio also adds infrastructure services. They support monitoring the microservice applications. Instead of developing its own tools, Istio integrates established applications such as Prometheus, Grafana and Jaeger and the service mesh dashboard Kiali. The images shows that the Istio control plane interacts with the orchestrator, which today is in most cases Kubernetes.
+
+Istio adds over 20 Custom Resource Definitions (CRDs) to Kubernetes, which represents the complexity of the Istio API and the richness of configuration options. On the one hand, this allows full customization but on the other hand it clearly affect the usability. Istio also adds a number of components (marked blue and green in the figure) to a application which add technical complexity.
+
+<!--TODO: Google Anthos basiert auf Istio, Knative nutzt Istio etc. -->
+
 ## Overview {#section-example-overview}
 
 The example in this chapter contains three microservices: User can use
@@ -106,7 +124,7 @@ effort. Istio includes *[Prometheus](https://prometheus.io/)* to store
 metrics for analysis. Istio also includes
 *[Grafana](https://grafana.com/)*; a tools for the analysis of
 the metrics.
-  
+
 Of course, this approach supports only metrics that the proxy can
 measure. This includes all the information about the request, such as
 its duration or the status code. Also, information about the
@@ -498,6 +516,7 @@ discuss:
   the traffic. Mirroring can be used to make sure that the new and the
   old version behave in the same way.
   
+
 This 
 [example](https://istio.io/docs/tasks/telemetry/metrics-logs/)
 discusses how Istio support logs,
