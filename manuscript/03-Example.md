@@ -8,17 +8,16 @@ Kubernetes and uses Istio as a service mesh.
 
 ## Istio
 
-Istio is the most popular service mesh tool, developed by Google and IBM. Just like Kubernetes is a Open Source reimplementation of a Google internal workload orchestrator, Google's internal API & Service Management System is the ancestor of Istio. Istio implements all service mesh features described in the previous chapter such as metrics, logging, tracing, traffic routing, circuit breaking, mTLS and authorization. Although Istio is designed to be platform-independent, it started with first class support for Kubernetes. Other platforms will follow soon.
+Istio is the most popular service mesh, developed by Google and IBM. Just like Kubernetes, it is an Open Source reimplementation of a Google internal workload orchestrator. Google's internal API & Service Management System is the ancestor of Istio. Istio implements all service mesh features described in the [previous chapter](#chapter-what) such as metrics, logging, tracing, traffic routing, circuit breaking, mTLS, and authorization. Although Istio is designed to be platform-independent, it started with first class support for Kubernetes. Other platforms will follow soon.
 
-The image also reflects how the service mesh is located between the orchestrator (top) and the application (bottom). Istio integrates with many existing technologies such as Envoy as service proxy for the data plane. The three core components of Istio make up the control plane: Pilot, Mixer and Citadel. They communicate with the envoy proxies to distribute configurations, receive recorded network traffic/telemetry data , or manage certificates.
+[Figure 4.1](#fig-example-istio) reflects how the service mesh is located between the orchestrator (top) and the application (bottom). Istio integrates with many existing technologies such as Envoy as service proxy for the data plane. The three core components of Istio make up the control plane: Pilot, Mixer and Citadel. They communicate with the envoy proxies to distribute configurations, receive recorded network traffic/telemetry data, or manage certificates.
 
 {id="fig-example-istio"}
-
-![Istio Architecture](images/05_istio_full.png)
+![Figure 4.1: Istio Architecture](images/05_istio_full.png)
 
 <!--TODO: Galley in Istio Architektur übernehmen--> 
 
-In addition to the typical service mesh control and data plane, Istio also adds infrastructure services. They support monitoring the microservice applications. Instead of developing its own tools, Istio integrates established applications such as Prometheus, Grafana and Jaeger and the service mesh dashboard Kiali. The images shows that the Istio control plane interacts with the orchestrator, which today is in most cases Kubernetes.
+In addition to the typical service mesh control and data plane, Istio also adds infrastructure services. They support monitoring the microservice applications. Instead of developing its own tools, Istio integrates established applications such as Prometheus, Grafana, and Jaeger and the service mesh dashboard Kiali. The images shows that the Istio control plane interacts with the orchestrator, which today is in most cases Kubernetes.
 
 Istio adds over 20 Custom Resource Definitions (CRDs) to Kubernetes, which represents the complexity of the Istio API and the richness of configuration options. On the one hand, this allows full customization but on the other hand it clearly affect the usability. Istio also adds a number of components (marked blue and green in the figure) to a application which add technical complexity.
 
@@ -35,9 +34,9 @@ shipment. The invoicing and the shipping microservice present a web
 interface to the user, too.
 
 {id="fig-example-overview"}
-![Figure 4.1: Overview of the Example](images/example-overview.png)
+![Figure 4.2: Overview of the Example](images/example-overview.png)
 
-[Figure 4.1](#fig-example-overview) shows the structure of the
+[Figure 4.2](#fig-example-overview) shows the structure of the
 example:
 
 * Istio provides the *Ingress Gateway*. It forwards HTTP requests to
@@ -140,10 +139,10 @@ example](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#
 contains information how to run Prometheus in the example.
 
 {id="fig-example-prometheus", width=65%}
-![Figure 4.2: Prometheus with Istio Metrics](images/example-prometheus.png)
+![Figure 4.3: Prometheus with Istio Metrics](images/example-prometheus.png)
 
 Prometheus stores all metrics and also provides a simple UI to analyze
-the metrics.  [Figure 4.2](#fig-example-prometheus) shows the
+the metrics.  [Figure 4.3](#fig-example-prometheus) shows the
 byte count for requests and the different destinations: the order
 microservice and also the Istio component that measures the telemetry
 data.
@@ -162,10 +161,10 @@ explains how to use Grafana with the example.
 
 
 {id="fig-example-grafana", width=65%}
-![Figure 4.3: Grafana with Istio Dashboard](images/example-grafana.png)
+![Figure 4.4: Grafana with Istio Dashboard](images/example-grafana.png)
 
 The Grafana installation in Istio provides predefined
-dashboards. [Figure 4.3](#fig-example-grafana) shows an example
+dashboards. [Figure 4.4](#fig-example-grafana) shows an example
 of the Istio service dashboard. It uses the shipping
 microservice. The dashboard shows metrics such as the request
 volume, the success
@@ -194,17 +193,17 @@ The documentation of the example contains a
 about tracing.
 
 {id="fig-example-tracing", width="50%"}
-![Figure 4.4: Jaeger Trace](images/example-tracing.png)
+![Figure 4.5: Jaeger Trace](images/example-tracing.png)
 
-[Figure 4.4](#fig-example-tracing) shows an example of a
+[Figure 4.5](#fig-example-tracing) shows an example of a
 trace for a request to the shipping microservice. The
 user started a poll for new data on the order microservice. Then the
 service contacted the Istio Mixer to make sure the policies are enforced.
 
 {id="fig-example-tracing-dependencies", width="50%"}
-![Figure 4.5: Jaeger Dependencies](images/example-tracing-dependencies.png)
+![Figure 4.6: Jaeger Dependencies](images/example-tracing-dependencies.png)
 
-[Figure 4.5](#fig-example-tracing-dependencies) shows a different type of
+[Figure 4.6](#fig-example-tracing-dependencies) shows a different type of
 information Jaeger provides: the dependencies between the
 microservices. Shipping and invoicing use order to receive the
 information about the latest orders. Order reports metrics to
@@ -246,10 +245,10 @@ but also information about how they are communicating with each
 other. That makes it clearer what the status of the dependencies is
 and what is going on where in the microservices system.
 [Figure
-4.6](#fig-example-kiali) shows an example of a dependency graph.
+4.7](#fig-example-kiali) shows an example of a dependency graph.
 
 {id="fig-example-kiali", width="70%"}
-![Figure 4.6: Dependencies in Kiali](images/example-kiali.png)
+![Figure 4.7 Dependencies in Kiali](images/example-kiali.png)
 
 The
 [documentation](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#kiali)
@@ -257,7 +256,7 @@ explains how to use Kiali for the example.
 
 ## Logging {#section-example-logging}
 
-As explained in [section 4.2](#section-why-logging), service meshes
+As explained in [section 3.2](#section-why-logging), service meshes
 are of little help for logging. However,
 Istio can forward information about each HTTP request to a logging
 infrastructure. That information can be used to analyze, for example,
@@ -275,9 +274,9 @@ infrastructure uses Elasticsearch to store logs and Kibana to analyze
 them.
 
 {id="fig-example-logging", width="50%"}
-![Figure 4.7: Logging in the Example](images/example-logging.png)
+![Figure 4.8 Logging in the Example](images/example-logging.png)
 
-[Figure 4.7](#fig-example-logging) shows how logging is implemented in the
+[Figure 4.8(#fig-example-logging) shows how logging is implemented in the
 example. Each microservice must directly write JSON data to the
 Elasticsearch server. So there is no need to write any log files which
 makes the system easier to handle. The need to parse the log
@@ -308,7 +307,7 @@ could bring down the complete microservices system.
 
 #### Measuring Resilience with Istio
 
-As explained in [section 4.2](#section-why-resilience), failure
+As explained in [section 3.3](section-why-resilience), failure
 cascades can happen if a called microservice returns an
 error. It could be even worse if the called microservices does return
 successfully but takes a long time. In that case, resources such as
@@ -357,7 +356,7 @@ resilient.
 
 Fault and delay injection are just useful to test the resilience of a
 system. However, as explained in [section
-4.2](#section-why-resilience) circuit breaker are one way to actually
+3.3](#section-why-resilience) circuit breaker are one way to actually
 make a system
 more resilient. 
 
@@ -424,7 +423,7 @@ microservice.
 ##### Retry and Timeout
 
 Retries and timeouts as explained in [section
-4.2](#section-why-resilience) can be defined in the same part of
+3.3](#section-why-resilience) can be defined in the same part of
 the Istio configuration. That makes it easy to define a timeout per
 retry and a maximum time span that all retries together might take.
 
