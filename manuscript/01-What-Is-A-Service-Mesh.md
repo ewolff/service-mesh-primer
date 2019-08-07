@@ -12,20 +12,10 @@ This architecture adds powerful features like monitoring, circuit breaking, cana
 
 ## Service Mesh Interface {#section-what-interface}
 
-The attention - or rather hype - have resulted is a multitude of service mesh implementations, each introducing different concepts and APIs. Meanwhile, a service mesh also turned out to be a suitable base for more advanced tools like
+The attention - or rather hype - has resulted is a multitude of service mesh implementations, each introducing different concepts and APIs. Meanwhile, a service mesh also turned out to be a suitable base for more advanced tools like
 
-- Flagger[^1], for automating canary releasing, 
-- Squash[^2], a debugging tool for running microservices, and
-- Kiali[^3], a dashboard.
+- [Flagger](https://flagger.app), for automating canary releasing, 
+- [Squash](https://squash.solo.io), a debugging tool for running microservices, and
+- [Kiali](https://www.kiali.io), a dashboard.
 
-The diverse landscape of service mesh implementations forced tool developers and users to bind to a specific service mesh. This lead Microsoft, HashiCorp, Buoyant and Solo.io to create Service Mesh Interface[^4] (SMI), an API specification for service mesh features. Users and tools binding to SMI will be able to use service mesh features independent of the implementation. Although SMI is still young, adapters implementing a part of SMI already exist for all four major service meshes Linkerd, Istio, Consul and AWS App Mesh.
-
-[^1]: https://flagger.app
-[^2]: https://squash.solo.io
-[^3]: https://www.kiali.io
-[^4]: https://smi-spec.io
-
-
-
-
-
+The diverse landscape of service mesh implementations forced tool developers and users to bind to a specific service mesh. This led Microsoft, HashiCorp, Buoyant, and Solo.io to create [Service Mesh Interface](https://smi-spec.io) (SMI), an API specification for service mesh features. Users and tools binding to SMI will be able to use service mesh features independently of the implementation. Although SMI is still young, adapters implementing a part of SMI already exist for all four major service meshes Linkerd 2, Istio, Consul, and AWS App Mesh.
