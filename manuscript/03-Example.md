@@ -19,7 +19,7 @@ Istio is the most popular service mesh, developed by Google and IBM. Just like K
 
 In addition to the typical service mesh control and data plane, Istio also adds infrastructure services. They support monitoring the microservice applications. Instead of developing its own tools, Istio integrates established applications such as Prometheus, Grafana, and Jaeger and the service mesh dashboard Kiali. The images shows that the Istio control plane interacts with the orchestrator, which today is in most cases Kubernetes.
 
-Istio adds over 20 Custom Resource Definitions (CRDs) to Kubernetes, which represents the complexity of the Istio API and the richness of configuration options. On the one hand, this allows full customization but on the other hand it clearly affect the usability. Istio also adds a number of components (marked blue and green in the figure) to a application which add technical complexity.
+Istio adds over 20 Custom Resource Definitions (CRDs) to Kubernetes, which represents the complexity of the Istio API and the richness of configuration options. On the one hand, this allows full customization but on the other hand it clearly affect the usability. Istio also adds a number of components (marked blue and green in the figure) to an application which add technical complexity.
 
 <!--TODO: Google Anthos basiert auf Istio, Knative nutzt Istio etc. -->
 
