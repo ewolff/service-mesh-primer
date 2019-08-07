@@ -16,6 +16,7 @@ The attention - or rather hype - has resulted is a multitude of service mesh imp
 
 - [Flagger](https://flagger.app), for automating canary releasing, 
 - [Squash](https://squash.solo.io), a debugging tool for running microservices, and
-- [Kiali](https://www.kiali.io), a dashboard.
+- [Kiali](https://www.kiali.io), a service mesh dashboard.
 
-The diverse landscape of service mesh implementations forced tool developers and users to bind to a specific service mesh. This led Microsoft, HashiCorp, Buoyant, and Solo.io to create [Service Mesh Interface](https://smi-spec.io) (SMI), an API specification for service mesh features. Users and tools binding to SMI will be able to use service mesh features independently of the implementation. Although SMI is still young, adapters implementing a part of SMI already exist for all four major service meshes Linkerd 2, Istio, Consul, and AWS App Mesh.
+The diverse landscape of service mesh implementations forced tool developers and users to bind to a specific service mesh. This led Microsoft, HashiCorp, Buoyant, and Solo.io to create [Service Mesh Interface](https://smi-spec.io) (SMI), an API specification for service mesh features. Users and tools binding to SMI will be able to use service mesh features independently of the implementation. Although SMI is still young, adapters implementing a part of SMI already exist for the three major service meshes Linkerd 2, Istio, and Consul.
+
