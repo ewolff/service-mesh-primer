@@ -171,7 +171,7 @@ However, more advanced routing capabilities are useful, too:
   around and it is therefore easy to roll back. Advanced routing
   supports this process by splitting the traffic between the two
   versions. This might be done randomly or according to specific
-  segments like device or region.
+  segments like devices or geo regions.
   
 * Another way to mitigate the risk of a deployment is *mirroring*. In
   that case the new and the old version of a microservice run in
