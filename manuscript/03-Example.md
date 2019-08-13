@@ -273,10 +273,10 @@ For the example, a custom log infrastructure was set up. This
 infrastructure uses Elasticsearch to store logs and Kibana to analyze
 them.
 
-{id="fig-example-logging", width="50%"}
+{id="fig-example-logging", width="40%"}
 ![Figure 4.8 Logging in the Example](images/example-logging.png)
 
-[Figure 4.8(#fig-example-logging) shows how logging is implemented in the
+[Figure 4.8](#fig-example-logging) shows how logging is implemented in the
 example. Each microservice must directly write JSON data to the
 Elasticsearch server. So there is no need to write any log files which
 makes the system easier to handle. The need to parse the log
@@ -307,7 +307,7 @@ could bring down the complete microservices system.
 
 #### Measuring Resilience with Istio
 
-As explained in [section 3.3](section-why-resilience), failure
+As explained in [section 3.3](#section-why-resilience), failure
 cascades can happen if a called microservice returns an
 error. It could be even worse if the called microservices does return
 successfully but takes a long time. In that case, resources such as
