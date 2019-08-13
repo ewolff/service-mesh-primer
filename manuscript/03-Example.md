@@ -8,9 +8,16 @@ Kubernetes and uses Istio as a service mesh.
 
 ## Istio
 
-Istio is the most popular service mesh, developed by Google and IBM. Just like Kubernetes, it is an Open Source reimplementation of a Google's internal infrastructure. Istio implements all service mesh features described in the [previous chapter](#chapter-what) such as metrics, logging, tracing, traffic routing, circuit breaking, mTLS, and authorization. Although Istio is designed to be platform-independent, it started with first class support for Kubernetes.
+Istio is the most popular service mesh, developed by Google and
+IBM. Just like Kubernetes, it is an Open Source reimplementation of a
+part of Google's internal infrastructure. Istio implements all service mesh features described in the [previous chapter](#chapter-what) such as metrics, logging, tracing, traffic routing, circuit breaking, mTLS, and authorization. Although Istio is designed to be platform-independent, it started with first class support for Kubernetes.
 
-[Figure 4.1](#fig-example-istio) reflects how the service mesh is located between the orchestrator (top) and the application (bottom). The four core components of Istio make up the control plane: Galley, Pilot, Mixer and Citadel. They communicate with the service proxies to distribute configurations, receive recorded network traffic/telemetry data, or manage certificates. Istio uses Envoy as service proxy, a widely adopted open source proxy that is used by other service meshes too. 
+[Figure 4.1](#fig-example-istio) reflects how the service mesh is
+located between the orchestrator (top) and the application
+(bottom). The four core components of Istio make up the control plane:
+Galley, Pilot, Mixer and Citadel. They communicate with the service
+proxies to distribute configurations, receive recorded network traffic
+and telemetry data, and manage certificates. Istio uses Envoy as service proxy, a widely adopted open source proxy that is used by other service meshes too. 
 
 {id="fig-example-istio"}
 ![Figure 4.1: Istio Architecture](images/05_istio_full.png)

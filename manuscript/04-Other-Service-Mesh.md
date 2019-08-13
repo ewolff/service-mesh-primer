@@ -9,7 +9,10 @@ Although Linkerd had been adopted in large production systems, the software was 
 
 Although Kubernetes is the most common platform to be used with Istio, it is designed to work with any environment. The complexity of Istio is to some extent caused by this platform neutral design. While the first version of Linkerd was designed alike, Linkerd 2 benefits from its commitment to Kubernetes. Linkerd implements most service mesh features such as monitoring, routing, retries, timeouts, and mTLS. Circuit breaking, tracing, and autorization are missing. While most service mesh implementations use the Envoy service proxy, Linkerd includes its own service proxy implementation (linkerd-proxy).
 
-Rewriting Linkerd for usability and performance while integrating with Kubernetes seems to have worked out. The API of Linkerd 2 is much cleaner and more consistent than Istio's. It introduces only one Kubernetes CRD and provides a carefully considered dashboard, shown in [figure 5.1](#fig-other-linkerd-dashboard). Kubernetes users should seriously consider it since it includes most service mesh features in a production ready stage, has a small resource and performance footprint, and provides an excellent developer experience.
+Rewriting Linkerd for usability and performance while integrating with
+Kubernetes seems to have worked out. The API of Linkerd 2 is much
+cleaner and more consistent than Istio's. It introduces only one
+Kubernetes CRD (Custom Resource Definition) and provides a carefully considered dashboard, shown in [figure 5.1](#fig-other-linkerd-dashboard). Kubernetes users should seriously consider it since it includes most service mesh features in a production ready stage, has a small resource and performance footprint, and provides an excellent developer experience.
 
 <!--TODO: refined Timeouts and retrys-->
 
