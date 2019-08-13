@@ -147,11 +147,6 @@ The [documentation of the
 example](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#prometheus)
 contains information how to run Prometheus in the example.
 
-{id="fig-example-prometheus", width=65%}
-![Figure 4.3: Prometheus with Istio Metrics](images/example-prometheus.png)
-
-<!-- I suggest removing the browser frame from all images -->
-
 Prometheus stores all metrics and also provides a simple UI to analyze
 the metrics. [Figure 4.3](#fig-example-prometheus) shows the
 byte count for requests and the different destinations: the order
@@ -163,15 +158,17 @@ the data. These metrics could be summed up by dimensions such as the
 destination, to understand which destination receives how much
 traffic.
 
+{id="fig-example-prometheus", width=65%}
+![Figure 4.3: Prometheus with Istio Metrics](images/example-prometheus.png)
+
+<!-- I suggest removing the browser frame from all images -->
+
 #### Grafana
 
 For more advanced analysis of the data, Istio provides an
 installation of Grafana. The
 [documentation](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#grafana)
 explains how to use Grafana with the example.
-
-{id="fig-example-grafana", width=65%}
-![Figure 4.4: Grafana with Istio Dashboard](images/example-grafana.png)
 
 The Grafana installation in Istio provides predefined
 dashboards. [Figure 4.4](#fig-example-grafana) shows an example
@@ -180,6 +177,9 @@ microservice. The dashboard shows metrics such as the request
 volume, the success
 rate and the duration. This gives a great overview about the
 state of the service.
+
+{id="fig-example-grafana", width=65%}
+![Figure 4.4: Grafana with Istio Dashboard](images/example-grafana.png)
 
 Istio supplies also other dashboards.
 The Istio performance dashboard provides a general overview about the
