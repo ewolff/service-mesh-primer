@@ -89,7 +89,7 @@ information about the microservices.
 
 #### Sidecar
 
-As mentioned in [chapter 1](#chapter-what), the idea behind a
+As mentioned in [chapter 2](#chapter-what), the idea behind a
 *sidecar* is to add another
 Docker container to each Kubernetes pod. Actually, if you list the
 Kubernetes pods with `kubectl get pods`, you will notice that for each
@@ -122,7 +122,7 @@ all Kubernetes resources that belong to Istio itself.
 
 The sidecars contain the proxies. Istio routes all traffic between the
 microservice through these proxies as described in [chapter
-1](#chapter-what).
+2](#chapter-what).
 
 ## Monitoring with Prometheus and Grafana {#section-example-monitoring}
 
