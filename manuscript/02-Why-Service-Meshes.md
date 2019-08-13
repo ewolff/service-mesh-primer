@@ -177,13 +177,11 @@ However, more advanced routing capabilities are useful, too:
   that case the new and the old version of a microservice run in
   parallel. Both receive the traffic and respond to it. It is possible
   to look at different behavior in detail and determine whether the
-  new version works correctly. It is not even necessary to send the
-  responses of the new version to the user. In that case, the risk for
+  new version works correctly. Istio automatically discards the
+  responses of the new service. In that case, the risk for
   deploying a new version is essential non-existent.
 
-  <!-- FWIW: At least in Istio, mirroring always means that responses of the new service are discarded: https://istio.io/docs/tasks/traffic-management/mirroring/ -->
-  
-* *A/B testing* gives different users access to different versions of
+  * *A/B testing* gives different users access to different versions of
   a microservices. The test helps to determine which version generates
   more revenue, for example. Again randomly routing requests or
   routing requests for specific customer segments is a prerequisite
@@ -238,14 +236,11 @@ proxies as small as possible. For example, it is possible to collect
 data about requests in the proxy and send it to the service mesh
 infrastructure later. That way sending the information does not
 increase the latency even further.
-
-In some cases, this might not be possible. If new security policies
-must be enforced as soon as possible, it might be necessary to update
-the security policies synchronously with each call. So there is a
-trade-off between getting the most up-to-date information and low
+Also updates -- for example, to security policies, are distributed asychronously
+to the proxies. That means updates to such policies might take some time
+until they are actually enforced in every proxy.
+So Istio is optimized for low
 latency.
-
-<!-- Indeed, even the proxies of the current Istio version don't perform any synchronous actions anymore, but rather wait for the control plane to push updated policies. -->
 
 Of course, the service mesh itself needs to run. This will consume
 memory and CPU. However, hardware is becoming cheaper constantly and
