@@ -1,12 +1,4 @@
-- We could add the challenges, advantages, and conclusion that the
-  "Practical Microservices" book mentions in chapter 23 to the
-  conclusion. (EW after HP wrote the conclusion)
-
 - Optional: Add additional example to "Example" in the "How to Dig Deeper"
   section. 
 
 - Optional: Mesh Expansion / Multicluster / Non-K8s Environment with Service Mesh
-
-- HP 01 / 04 / 05
-
-- 
