@@ -21,8 +21,8 @@ In a Kubernetes environment, Istio adds over 20 Custom Resource Definitions (CRD
 
 ## Overview {#section-example-overview}
 
-The example in this chapter contains three microservices: Users can use
-the *order* microservice to enter new orders via a web interface. The
+The example in this chapter contains three microservices: Users can enter new orders
+via a web interface of the *order* microservice. The
 data about the order is transferred to the *invoicing* microservice
 that will create an invoice and present it to the user. The *shipping*
 microservice will use the data about the order to create a
@@ -156,7 +156,6 @@ For more advanced analysis of the data, Istio provides an
 installation of Grafana. The
 [documentation](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#grafana)
 explains how to use Grafana with the example.
-
 
 {id="fig-example-grafana", width=65%}
 ![Figure 4.4: Grafana with Istio Dashboard](images/example-grafana.png)
