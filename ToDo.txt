@@ -5,8 +5,8 @@
 - Optional: Add additional example to "Example" in the "How to Dig Deeper"
   section. 
 
-- Optional: Tools on Top of Service Mesh: KubeCost, Flagger, Solo.io Tools, Dashboards (Kiali)
-
 - Optional: Mesh Expansion / Multicluster / Non-K8s Environment with Service Mesh
 
 - HP 01 / 04 / 05
+
+- 

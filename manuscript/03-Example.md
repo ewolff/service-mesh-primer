@@ -8,25 +8,21 @@ Kubernetes and uses Istio as a service mesh.
 
 ## Istio
 
-Istio is the most popular service mesh, developed by Google and IBM. Just like Kubernetes, it is an Open Source reimplementation of a Google internal workload orchestrator. Google's internal API & Service Management System is the ancestor of Istio. Istio implements all service mesh features described in the [previous chapter](#chapter-what) such as metrics, logging, tracing, traffic routing, circuit breaking, mTLS, and authorization. Although Istio is designed to be platform-independent, it started with first class support for Kubernetes. Other platforms will follow soon.
+Istio is the most popular service mesh, developed by Google and IBM. Just like Kubernetes, it is an Open Source reimplementation of a Google's internal infrastructure. Istio implements all service mesh features described in the [previous chapter](#chapter-what) such as metrics, logging, tracing, traffic routing, circuit breaking, mTLS, and authorization. Although Istio is designed to be platform-independent, it started with first class support for Kubernetes.
 
-[Figure 4.1](#fig-example-istio) reflects how the service mesh is located between the orchestrator (top) and the application (bottom). Istio integrates with many existing technologies such as Envoy as service proxy for the data plane. The three core components of Istio make up the control plane: Pilot, Mixer and Citadel. They communicate with the envoy proxies to distribute configurations, receive recorded network traffic/telemetry data, or manage certificates.
+[Figure 4.1](#fig-example-istio) reflects how the service mesh is located between the orchestrator (top) and the application (bottom). The four core components of Istio make up the control plane: Galley, Pilot, Mixer and Citadel. They communicate with the service proxies to distribute configurations, receive recorded network traffic/telemetry data, or manage certificates. Istio uses Envoy as service proxy, a widely adopted open source proxy that is used by other service meshes too. 
 
 {id="fig-example-istio"}
 ![Figure 4.1: Istio Architecture](images/05_istio_full.png)
 
-<!--TODO: Galley in Istio Architektur übernehmen--> 
+In addition to the typical service mesh control and data plane, Istio also adds infrastructure services. They support monitoring the microservice applications. Instead of developing its own tools, Istio integrates established applications such as Prometheus, Grafana, and Jaeger and the service mesh dashboard Kiali. The image shows that the Istio control plane interacts with the orchestrator, which today is in most cases Kubernetes.
 
-In addition to the typical service mesh control and data plane, Istio also adds infrastructure services. They support monitoring the microservice applications. Instead of developing its own tools, Istio integrates established applications such as Prometheus, Grafana, and Jaeger and the service mesh dashboard Kiali. The images shows that the Istio control plane interacts with the orchestrator, which today is in most cases Kubernetes.
-
-Istio adds over 20 Custom Resource Definitions (CRDs) to Kubernetes, which represents the complexity of the Istio API and the richness of configuration options. On the one hand, this allows full customization but on the other hand it clearly affect the usability. Istio also adds a number of components (marked blue and green in the figure) to an application which add technical complexity.
-
-<!--TODO: Google Anthos basiert auf Istio, Knative nutzt Istio etc. -->
+In a Kubernetes environment, Istio adds over 20 Custom Resource Definitions (CRDs), which represents the complexity of the Istio API and the richness of configuration options. On the one hand, this allows full customization but on the other hand it clearly affect the usability. Istio also adds a number of components (marked as Istio Core and integrated components in the figure) to an application which add technical complexity.
 
 ## Overview {#section-example-overview}
 
 The example in this chapter contains three microservices: User can use
-the *order* microservice to enter new  orders via a web interface. The
+the *order* microservice to enter new orders via a web interface. The
 data about  the order is  transferred to the  *invoicing* microservice
 that will create an invoice and present it to the user. The *shipping*
 microservice will use the data about the order to create a
@@ -273,10 +269,10 @@ For the example, a custom log infrastructure was set up. This
 infrastructure uses Elasticsearch to store logs and Kibana to analyze
 them.
 
-{id="fig-example-logging", width="50%"}
+{id="fig-example-logging", width="40%"}
 ![Figure 4.8 Logging in the Example](images/example-logging.png)
 
-[Figure 4.8(#fig-example-logging) shows how logging is implemented in the
+[Figure 4.8](#fig-example-logging) shows how logging is implemented in the
 example. Each microservice must directly write JSON data to the
 Elasticsearch server. So there is no need to write any log files which
 makes the system easier to handle. The need to parse the log
@@ -307,7 +303,7 @@ could bring down the complete microservices system.
 
 #### Measuring Resilience with Istio
 
-As explained in [section 3.3](section-why-resilience), failure
+As explained in [section 3.3](#section-why-resilience), failure
 cascades can happen if a called microservice returns an
 error. It could be even worse if the called microservices does return
 successfully but takes a long time. In that case, resources such as
