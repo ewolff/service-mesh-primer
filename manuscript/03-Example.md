@@ -10,27 +10,33 @@ Kubernetes and uses Istio as a service mesh.
 
 Istio is the most popular service mesh, developed by Google and
 IBM. Just like Kubernetes, it is an Open Source reimplementation of a
-part of Google's internal infrastructure. Istio implements all service mesh features described in the [previous chapter](#chapter-what) such as metrics, logging, tracing, traffic routing, circuit breaking, mTLS, and authorization. Although Istio is designed to be platform-independent, it started with first class support for Kubernetes.
+part of Google's internal infrastructure. Istio implements all service
+mesh features described in the [previous chapter](#chapter-what) such as
+metrics, logging, tracing, traffic routing, circuit breaking, mTLS, and
+authorization. Although Istio is designed to be platform-independent, it
+started with first class support for Kubernetes.
 
 [Figure 4.1](#fig-example-istio) reflects how the service mesh is
 located between the orchestrator (top) and the application
 (bottom). The four core components of Istio make up the control plane:
-Galley, Pilot, Mixer and Citadel. They communicate with the service
+Galley, Pilot, Mixer, and Citadel. They communicate with the service
 proxies to distribute configurations, receive recorded network traffic
-and telemetry data, and manage certificates. Istio uses Envoy as service proxy, a widely adopted open source proxy that is used by other service meshes too. 
+and telemetry data, and manage certificates. Istio uses [*Envoy*](https://www.envoyproxy.io)
+as service proxy, a widely adopted open source proxy that is used by
+other service meshes, too.
 
 {id="fig-example-istio"}
 ![Figure 4.1: Istio Architecture](images/05_istio_full.png)
 
-In addition to the typical service mesh control and data plane, Istio also adds infrastructure services. They support monitoring the microservice applications. Instead of developing its own tools, Istio integrates established applications such as Prometheus, Grafana, and Jaeger and the service mesh dashboard Kiali. The image shows that the Istio control plane interacts with the orchestrator, which today is in most cases Kubernetes.
+In addition to the typical service mesh control and data plane, Istio also adds infrastructure services. They support monitoring the microservice applications. Instead of developing its own tools, Istio integrates established applications such as  *Prometheus*, *Grafana*, and *Jaeger* and the service mesh dashboard *Kiali*. The image shows that the Istio control plane interacts with the orchestrator, which today is in most cases Kubernetes.
 
 In a Kubernetes environment, Istio adds over 20 Custom Resource Definitions (CRDs), which represents the complexity of the Istio API and the richness of configuration options. On the one hand, this allows full customization but on the other hand it clearly affect the usability. Istio also adds a number of components (marked as Istio Core and integrated components in the figure) to an application which add technical complexity.
 
 ## Overview {#section-example-overview}
 
-The example in this chapter contains three microservices: User can use
-the *order* microservice to enter new orders via a web interface. The
-data about  the order is  transferred to the  *invoicing* microservice
+The example in this chapter contains three microservices: Users can enter new orders
+via a web interface of the *order* microservice. The
+data about the order is transferred to the *invoicing* microservice
 that will create an invoice and present it to the user. The *shipping*
 microservice will use the data about the order to create a
 shipment. The invoicing and the shipping microservice present a web
@@ -109,14 +115,14 @@ Istio automatically injects these containers into each pod. During the
 installation described previously, `kubectl label namespace default
 istio-injection=enabled` marked the `default` namespace so that Istio
 injects sidecars for each pod in that namespace. Namespaces are a
-concept in Kubernetes to separate Kubernetes resources. With Istio,
+concept in Kubernetes to separate Kubernetes resources. In this example,
 the `default` namespace contains all Kubernetes resources
 that the user provides. The namespace `istio-system` contains
 all Kubernetes resources that belong to Istio itself.
 
 The sidecars contain the proxies. Istio routes all traffic between the
 microservice through these proxies as described in [chapter
-1]{#chapter-what-is-a-service-mesh}.
+1](#chapter-what).
 
 ## Monitoring with Prometheus and Grafana {#section-example-monitoring}
 
@@ -144,14 +150,16 @@ contains information how to run Prometheus in the example.
 {id="fig-example-prometheus", width=65%}
 ![Figure 4.3: Prometheus with Istio Metrics](images/example-prometheus.png)
 
+<!-- I suggest removing the browser frame from all images -->
+
 Prometheus stores all metrics and also provides a simple UI to analyze
-the metrics.  [Figure 4.3](#fig-example-prometheus) shows the
+the metrics. [Figure 4.3](#fig-example-prometheus) shows the
 byte count for requests and the different destinations: the order
 microservice and also the Istio component that measures the telemetry
 data.
 
-Prometheus is multi-dimensional.  The destination is one dimension of
-the data.  These metrics could be summed up by dimensions such as the
+Prometheus is multi-dimensional. The destination is one dimension of
+the data. These metrics could be summed up by dimensions such as the
 destination, to understand which destination receives how much
 traffic.
 
@@ -161,7 +169,6 @@ For more advanced analysis of the data, Istio provides an
 installation of Grafana. The
 [documentation](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#grafana)
 explains how to use Grafana with the example.
-
 
 {id="fig-example-grafana", width=65%}
 ![Figure 4.4: Grafana with Istio Dashboard](images/example-grafana.png)
@@ -253,6 +260,8 @@ and what is going on where in the microservices system.
 {id="fig-example-kiali", width="70%"}
 ![Figure 4.7 Dependencies in Kiali](images/example-kiali.png)
 
+<!-- We could take a new screenshot since the new Kiali version provides even more features -->
+
 The
 [documentation](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#kiali)
 explains how to use Kiali for the example.
@@ -301,6 +310,8 @@ implementation by searching for log entries with severity error. Also
 logging each HTTP request adds little value.  Information about the
 HTTP requests is probably already included in the logs of the
 microservices.
+
+<!--In case we need to reduce the number of words/pages, the logging section is a good candidate since it does not use service mesh features--> 
 
 ## Resilience {#service-mesh-resilience}
 
@@ -406,6 +417,8 @@ configuration has the following settings:
   status 5xx or a timeout -- it is excluded from traffic for ten
   minutes (`baseEjectionTime`). All instances of the microservice
   might be excluded from traffic in this way (`maxEjectionPercent`).
+
+<!--Exceeding the connection limits (maxConnections, maxRequestsPerConnection, http1MaxPendingRequests, http2MaxRequests) will also result in  an error state and trigger the circuit breaker.-->
 
 These limits protect the microservice from
 too much load. And, if an instance has already failed, it
@@ -530,6 +543,8 @@ Also, this
 how [Fluentd](https://www.fluentd.org/) collects the
 logs Istio provides from all microservices. The logs are stored in
 Elasticsearch and evaluated with Kibana.
+
+<!--I agree that logging won't be a useful service mesh feature for most applications and therefore suggest to remove one of the paragraphs above.-->
 
 
 ## Conclusion

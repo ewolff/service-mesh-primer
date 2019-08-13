@@ -9,14 +9,14 @@ network interfaces. [Kubernetes](https://kubernetes.io/) runs Docker
 containers in a cluster and enables load balancing as well as fail
 over. It also adds feature like service discovery or
 routing. Nowadays, Kubernetes has become a very important
-infrastructure technology and has usage scenarios far beyond
+infrastructure technology and has use cases far beyond
 microservices.
 
 So microservices cause a lot of innovation for
 infrastructures. Service meshes are the latest infrastructure
 technology to support microservices even better. This primer gives an
 overview of services meshes -- not just the concepts but also why
-services meshes are useful and which implementations there are. It
+services meshes are useful and which implementations exist. It
 even includes a hands-on example to experiment with a service mesh
 yourself.
 
