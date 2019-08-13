@@ -1,4 +1,4 @@
-# Other service meshes {#chapter-other}
+# Other Service Meshes {#chapter-other}
 
 While Istio is the most popular service mesh, the market is quite diverse and worth evaluating. The first service mesh implementation was Linkerd, developed in 2015. In 2017, Google and IBM joined forces to create the Istio service mesh after they found out they have been working on similar ideas. The public attention Istio received through Google and IBM as main contributors was amplified by media campaigns and conference talks. By the end of 2017, Linkerd announced a new, more opinionated service mesh only for Kubernetes that was first named Conduit and later Linkerd 2. By 2018, the term service mesh was ubiquitous and more products and companies joined the party. Consul added service mesh features and AWS announced their own service mesh implementation AWS App Mesh.
 
@@ -57,4 +57,7 @@ Another criterion is the platform. If the whole application runs in Kubernetes a
 
 Many microservice applications are dealing with a higher latency compared to monoliths. A service mesh also adds to the latency, which is not completely balanced by improved load balancing strategies. Also, the number of running applications is doubled which has an impact on resource consumption. Fair benchmarks in this space are hard to find because of the different feature sets and configuration. Most results show that, although Istio's performance has improved over time, Linkerd is performing better under high load and uses much less resources.
 
-<!--TODO: Move "Service meshes only for microservices?" somewhere else-->
+<!--TODO: Hinweis aktueller Stand-->
+
+<!--TODO: Versionsnummern Consul -->
+
