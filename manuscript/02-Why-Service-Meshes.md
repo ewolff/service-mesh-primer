@@ -39,6 +39,7 @@ Relying on a service mesh for monitoring has some benefits:
   a user or client would see. This is enough to ensure that service
   level agreements and quality of service is met.
   
+
 So metrics provided by a service mesh might be enough to manage a
 microservices system. However, for a root cause analysis additional
 metrics from inside the microservices might be useful. In that case,
@@ -129,7 +130,7 @@ a cascade of error, the system will become quite unstable.
 *Circuit breakers* are one way to add some resilience to a
 microservices system. A conventional circuit breaker would cut a
 circuit if the circuit is shorten. That protects the circuit from
-overheating.  Circuit breakers in software systems do something
+overheating. Circuit breakers in software systems do something
 similar: They protect a part of the system by cutting off some of the
 traffic.  Because service meshes add proxies to the communication
 between the microservices, you can add a circuit breaker without
@@ -170,7 +171,7 @@ However, more advanced routing capabilities are useful, too:
   around and it is therefore easy to roll back. Advanced routing
   supports this process by splitting the traffic between the two
   versions. This might be done randomly or according to specific
-  segments like mobile users.
+  segments like device or region.
   
 * Another way to mitigate the risk of a deployment is *mirroring*. In
   that case the new and the old version of a microservice run in
@@ -180,12 +181,15 @@ However, more advanced routing capabilities are useful, too:
   responses of the new version to the user. In that case, the risk for
   deploying a new version is essential non-existent.
 
+  <!-- FWIW: At least in Istio, mirroring always means that responses of the new service are discarded: https://istio.io/docs/tasks/traffic-management/mirroring/ -->
+  
 * *A/B testing* gives different users access to different versions of
   a microservices. The test helps to determine which version generates
   more revenue, for example. Again randomly routing requests or
   routing requests for specific customer segments is a prerequisite
   for this approach.
   
+
 Again, it is quite easy to implement these features once the proxies
 of the service mesh are in place. The only difference might be that
 not just traffic between microservices must be handled but also
@@ -215,7 +219,7 @@ other microservices. That means that the service mesh can implement
 *authorization* for microservices.
 
 Finally, it is possible to add a token to the HTTP
-communication. Standards like [JWT](https://jwt.io/)(JSON Web Token)
+communication. Standards like [JWT](https://jwt.io/) (JSON Web Token)
 define how information about a user and its roles can be transferred
 with each HTTP request. The proxy of the service mesh can examine the
 token and implement authorization based on the data provided.
@@ -240,6 +244,8 @@ must be enforced as soon as possible, it might be necessary to update
 the security policies synchronously with each call. So there is a
 trade-off between getting the most up-to-date information and low
 latency.
+
+<!-- Indeed, even the proxies of the current Istio version don't perform any synchronous actions anymore, but rather wait for the control plane to push updated policies. -->
 
 Of course, the service mesh itself needs to run. This will consume
 memory and CPU. However, hardware is becoming cheaper constantly and
