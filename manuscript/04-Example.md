@@ -202,16 +202,13 @@ The documentation of the example contains a
 [section](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#tracing)
 about tracing.
 
-{id="fig-example-tracing", width="50%"}
+{id="fig-example-tracing", width="60%"}
 ![Figure 4.5: Jaeger Trace](images/example-tracing.png)
 
 [Figure 4.5](#fig-example-tracing) shows an example of a
 trace for a request to the shipping microservice. The
 user started a poll for new data on the order microservice. Then the
 service contacted the Istio Mixer to make sure the policies are enforced.
-
-{id="fig-example-tracing-dependencies", width="50%"}
-![Figure 4.6: Jaeger Dependencies](images/example-tracing-dependencies.png)
 
 [Figure 4.6](#fig-example-tracing-dependencies) shows a different type of
 information Jaeger provides: the dependencies between the
@@ -221,6 +218,9 @@ Mixer. And finally, order is accessed by the Istio gateway when
 external requests are forwarded to it. This information about
 dependencies might be useful to get an overview about the architecture
 of the system.
+
+{id="fig-example-tracing-dependencies", width="60%"}
+![Figure 4.6: Jaeger Dependencies](images/example-tracing-dependencies.png)
 
 To understand which incoming request caused which outgoing requests,
 Jaeger relies on specific HTTP header. The values in the headers of
