@@ -1,6 +1,6 @@
 # Other Service Meshes {#chapter-other}
 
-While Istio is the most popular service mesh, the market is quite diverse and worth evaluating. The first service mesh implementation was Linkerd, developed in 2015. In 2017, Google and IBM joined forces to create the Istio service mesh after they found out they have been working on similar ideas. The public attention Istio received through Google and IBM as main contributors was amplified by media campaigns and conference talks. By the end of 2017, Linkerd announced a new, more opinionated service mesh only for Kubernetes that was first named Conduit and later Linkerd 2. By 2018, the term service mesh was ubiquitous and more products and companies joined the party. Consul added service mesh features and AWS announced their own service mesh implementation AWS App Mesh.
+The last chapter has discussed Istio. While Istio is the most popular service mesh, the market is quite diverse and worth evaluating. The first service mesh implementation was Linkerd, developed in 2015. In 2017, Google and IBM joined forces to create the Istio service mesh after they found out they have been working on similar ideas. The public attention Istio received through Google and IBM as main contributors was amplified by media campaigns and conference talks. By the end of 2017, Linkerd announced a new, more opinionated service mesh only for Kubernetes that was first named Conduit and later Linkerd 2. By 2018, the term service mesh was ubiquitous and more products and companies joined the party. Consul added service mesh features and AWS announced their own service mesh implementation AWS App Mesh.
 
 ## Linkerd 2 {#section-other-linkerd2}
 
@@ -41,13 +41,16 @@ AWS is the most recent service mesh implementation, but since AWS has the bigges
 
 The features a service mesh provides are useful for the vast majority of microservice applications. When it comes to choosing a specific service mesh implementation, it is hard to resist going with Istio as it is the most popular one. But experience shows that technical decisions are best based on requirements and problems rather than any hype, a projects public attention, or even its number of features.
 
-As shown in [figure 5.2](#fig-other-service-mesh-comparison) Istio overtook all other service mesh implementations in terms of feature completeness and configurability. But these properties have made Istio an complex component that can be hard to manage in practice. In cases where not all features and their customizability are required, Linkerd, Consul and AWS App Mesh might be a better choice.
+As shown in [figure 5.2](#fig-other-service-mesh-comparison), Istio has overtaken all other service mesh implementations in terms of feature completeness and configurability. But these rich feature set have made Istio a complex component that can be hard to manage in practice. In cases where not all features and their customizability are required, Linkerd 2, Consul, and AWS App Mesh might be better choices.
 
 {id="fig-other-service-mesh-comparison"}
 
 ![Figure 5.2: Features of service mesh implementations as of September 2019](images/other-service-mesh-comparison.png)
 
-Another criterion is the platform. If the whole application runs in Kubernetes anyway, users can benefit from the simplicity of Linkerd 2. If Consul or AWS are already used, the corresponding service mesh implementations might cause least friction. If multiple clusters or legacy applications outside of the cluster are involved, Istio provides appropriate concepts and configuration. 
+Another criterion is the platform. If the whole application runs in Kubernetes anyway, users can benefit from the simplicity of Linkerd 2. If Consul or AWS are already used, the corresponding service mesh implementations might cause least friction. If multiple clusters or legacy applications outside of the cluster are involved, Istio provides appropriate concepts and configuration.
 
-Many microservice applications are dealing with a higher latency compared to monoliths. A service mesh also adds to the latency, which is not completely balanced by improved load balancing strategies. Also, the number of running applications is doubled which has an impact on resource consumption. Fair benchmarks in this space are hard to find because of different feature sets and configuration. Most results show that, although Istio's performance has improved over time, Linkerd is performing better under high load and uses much less resources.
 
+<!-- why would you only benefit from the simplicitiy of Linkerd 2 when running on Kubernetes? -->
+<!-- Chapter 3 (example) gives an overview of Istio's features. It does not talk about multiple clusters or legacy applications outside the cluster. IMHO the features for these scenarios should be explained here. -->
+
+Many microservice applications are dealing with a higher latency compared to monoliths. Communication in a monolith is always a method call in the same process. Communication between microservices goes through the network stack and has therefore a higher latency. A service mesh also adds to the latency, which is not completely balanced by improved load balancing strategies. Also, the sidecares double the number of running containers which has an impact on resource consumption. Fair benchmarks in this space are hard to find because of the different feature sets and configuration. Most results show that although Istio's performance has improved over time, Linkerd 2 is performing better under high load and uses much less resources.
