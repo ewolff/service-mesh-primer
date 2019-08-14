@@ -26,7 +26,7 @@ as service proxy, a widely adopted open source proxy that is used by
 other service meshes, too.
 
 {id="fig-example-istio"}
-![Figure 4.1: Istio Architecture](images/05_istio_full.png)
+![Figure 4.1: Istio Architecture](images/example-istio.png)
 
 In addition to the typical service mesh control and data plane, Istio also adds infrastructure services. They support monitoring the microservice applications. Instead of developing its own tools, Istio integrates established applications such as  *Prometheus*, *Grafana*, and *Jaeger* and the service mesh dashboard *Kiali*. The image shows that the Istio control plane interacts with the orchestrator, which today is in most cases Kubernetes.
 
@@ -89,7 +89,7 @@ information about the microservices.
 
 #### Sidecar
 
-As mentioned in [chapter 1](#chapter-what), the idea behind a
+As mentioned in [chapter 2](#chapter-what), the idea behind a
 *sidecar* is to add another
 Docker container to each Kubernetes pod. Actually, if you list the
 Kubernetes pods with `kubectl get pods`, you will notice that for each
@@ -122,7 +122,7 @@ all Kubernetes resources that belong to Istio itself.
 
 The sidecars contain the proxies. Istio routes all traffic between the
 microservice through these proxies as described in [chapter
-1](#chapter-what).
+2](#chapter-what).
 
 ## Monitoring with Prometheus and Grafana {#section-example-monitoring}
 
@@ -147,11 +147,6 @@ The [documentation of the
 example](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#prometheus)
 contains information how to run Prometheus in the example.
 
-{id="fig-example-prometheus", width=65%}
-![Figure 4.3: Prometheus with Istio Metrics](images/example-prometheus.png)
-
-<!-- I suggest removing the browser frame from all images -->
-
 Prometheus stores all metrics and also provides a simple UI to analyze
 the metrics. [Figure 4.3](#fig-example-prometheus) shows the
 byte count for requests and the different destinations: the order
@@ -163,15 +158,17 @@ the data. These metrics could be summed up by dimensions such as the
 destination, to understand which destination receives how much
 traffic.
 
+{id="fig-example-prometheus", width=65%}
+![Figure 4.3: Prometheus with Istio Metrics](images/example-prometheus.png)
+
+<!-- I suggest removing the browser frame from all images -->
+
 #### Grafana
 
 For more advanced analysis of the data, Istio provides an
 installation of Grafana. The
 [documentation](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#grafana)
 explains how to use Grafana with the example.
-
-{id="fig-example-grafana", width=65%}
-![Figure 4.4: Grafana with Istio Dashboard](images/example-grafana.png)
 
 The Grafana installation in Istio provides predefined
 dashboards. [Figure 4.4](#fig-example-grafana) shows an example
@@ -180,6 +177,9 @@ microservice. The dashboard shows metrics such as the request
 volume, the success
 rate and the duration. This gives a great overview about the
 state of the service.
+
+{id="fig-example-grafana", width=65%}
+![Figure 4.4: Grafana with Istio Dashboard](images/example-grafana.png)
 
 Istio supplies also other dashboards.
 The Istio performance dashboard provides a general overview about the
@@ -202,16 +202,13 @@ The documentation of the example contains a
 [section](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#tracing)
 about tracing.
 
-{id="fig-example-tracing", width="50%"}
+{id="fig-example-tracing", width="60%"}
 ![Figure 4.5: Jaeger Trace](images/example-tracing.png)
 
 [Figure 4.5](#fig-example-tracing) shows an example of a
 trace for a request to the shipping microservice. The
 user started a poll for new data on the order microservice. Then the
 service contacted the Istio Mixer to make sure the policies are enforced.
-
-{id="fig-example-tracing-dependencies", width="50%"}
-![Figure 4.6: Jaeger Dependencies](images/example-tracing-dependencies.png)
 
 [Figure 4.6](#fig-example-tracing-dependencies) shows a different type of
 information Jaeger provides: the dependencies between the
@@ -221,6 +218,9 @@ Mixer. And finally, order is accessed by the Istio gateway when
 external requests are forwarded to it. This information about
 dependencies might be useful to get an overview about the architecture
 of the system.
+
+{id="fig-example-tracing-dependencies", width="60%"}
+![Figure 4.6: Jaeger Dependencies](images/example-tracing-dependencies.png)
 
 To understand which incoming request caused which outgoing requests,
 Jaeger relies on specific HTTP header. The values in the headers of

@@ -9,7 +9,7 @@ A Service Mesh is composed of two layers, the *data plane* and the *control plan
 This architecture adds powerful features like monitoring, circuit breaking, canary releasing, and automatic mTLS (mutual TLS authentication) to a microservice application without the need to change a single line of application code.
 
 {id="fig-what-architecture"}
-![Figure 2.1 - Service Mesh Architecture](images/service_mesh_architecture.png)
+![Figure 2.1 - Service Mesh Architecture](images/what-architecture.png)
 
 
 ## Service Mesh Interface {#section-what-interface}
