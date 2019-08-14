@@ -22,17 +22,24 @@ Current implementations such as Istio, Linkerd, Consul, and AWS App Mesh are alr
 So it is relatively easy to test a service mesh for a concrete application without
 investing too much effort.
 
-The few drawbacks a service mesh has are the mental overhead it adds for the developers.
-However, the feature the service mesh provides would need to be implemented differently
-if no service mesh is used. So the mental overhead is probably the smaller problem.
-There is also the technical overhead: A service mesh adds to the latency and the resource demands. However, those drawbacks will decrease since all current service mesh implementations are constantly improved. Recent efforts such as the SMI (Service Mesh Interface) will reduce mental overhead, standardize service mesh features, and will pave the way for even more tools on top of service mesh capabilities.
+One of the few drawbacks a service mesh has is the mental overhead it adds for the developers. 
+But the challenges service meshes solve must be dealt with in a microservices system anyway, 
+which raises the question whether there is any simpler alternative to a service mesh. 
+Compared to other available solutions, the mental overhead of a service mesh appears to be 
+the smaller problem. The complexity of a service mesh seems rather necessary to deal with the 
+complexity of the distributed microservice architecture itself.
 
-The question is whether any
-simpler alternative exists. The challenges service meshes solve must be dealt with in a microservices system.
-The complexity of a service mesh is probably not a problem of Istio but rather of the microservices themselves.
 However, not all service meshes have the same complexity. Istio provides many advanced features.
 That increases complexity but might only pay of in very few scenarios. Linkerd 2 on the other hand
 has less features but is also less complex. For example, Linkerd 2 just defines one Kubernetes CRD (Custom
 Resource Definition) while Istio has many. These add to the complexity of the configuration of the service mesh.
 Also Istio can be stripped down. It
 is possible to exclude each part of the system from the installation. 
+
+Recent efforts such as the SMI (Service Mesh Interface) will reduce mental overhead, standardize service 
+mesh features, and will pave the way for even more tools on top of service mesh capabilities.
+
+The second drawback is the technical overhead: A service mesh adds to the latency and the resource 
+demands. However, those will decrease since all current service mesh implementations are constantly 
+improved. 
+
