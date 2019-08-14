@@ -32,9 +32,12 @@ However, the feature the service mesh provides would need to be implemented diff
 if no service mesh is used. So the mental overhead is probably the smaller problem.
 There is also the technical overhead: A service mesh adds to the latency and the resource demands. However, those drawbacks will decrease since all current service mesh implementations are constantly improved. Recent efforts such as the SMI (Service Mesh Interface) will reduce mental overhead, standardize service mesh features, and will pave the way for even more tools on top of service mesh capabilities.
 
-However, Istio is not just powerful but also complex. To solve this, Istio can be stripped down. It
-is possible to exclude each part of the system from the installation. The question is whether any
-simpler alternative exists. The challenges Istio solves must be dealt with in a microservices system.
-Istio’s complexity is probably not a problem of Istio but rather of the microservices themselves.
-<!-- I don't agree to this paragraph. I do believe that Istio's is much more complex than it needs to be. Even the many advanced use cases Istio can support like mesh expansion, multicluster etc. do not justify all the CRDs and the configuration model. -->
-
+The question is whether any
+simpler alternative exists. The challenges service meshes solve must be dealt with in a microservices system.
+The complexity of a service mesh is probably not a problem of Istio but rather of the microservices themselves.
+However, not all service meshes have the same complexity. Istio provides many advanced features.
+That increases complexity but might only pay of in very few scenarios. Linkerd 2 on the other hand
+has less features but is also less complex. For example, Linkerd 2 just defines one Kubernetes CRD (Custom
+Resource Definition) while Istio has many. These add to the complexity of the configuration of the service mesh.
+Also Istio can be stripped down. It
+is possible to exclude each part of the system from the installation. 
