@@ -2,7 +2,7 @@
 
 Microservices are here to stay. And service meshes are likely to be their long-term companions. Many monitoring, routing, resilience, and security features implemented inside each microservice can and will be taken over by a service mesh over time.
 These concepts have already proven themselves in the Google infrastructure.
-In some cases, the service mesh cannot fully implement the required functionalities.
+In some cases, the service mesh cannot -- and should not -- fully implement the desired functionalities.
 A service mesh has a black box view on the microservice. So internal information
 of the microservice is hidden from it. For example, the service mesh can only provide
 metrics about requests but not internal metrics like thread or database pool sizes.
@@ -10,11 +10,11 @@ Therefore in the example in [chapter 4](#chapter-example) logging had to be impl
 the microservices despite the service mesh.
 
 A service mesh is not limited to traditional microservices following the request-response paradigm. Microservices that communicate asynchronously  also benefit from monitoring and security features
-as well as the tools like Grafana, Prometheus, Jaeger, or Kiali.
+as well as from tools like Prometheus, Grafana, Jaeger, or Kiali.
 <!-- I don't see why SCS won't profit from all features mentioned above so I removed them -->
 However, asynchronous microservices
 will probably not use HTTP at all so routing is of little use. Also the resilience features
-are not useful. Asynchronous microservices will work on a message eventually. So if the
+are not useful. Asynchronous microservices will work on a message queue eventually. So if the
 microservice is currently not available, processing the message will take more time - until 
 the microservice is available again. The system should be able to deal with that, though.
 
@@ -31,3 +31,5 @@ However, Istio is not just powerful but also complex. To solve this, Istio can b
 is possible to exclude each part of the system from the installation. The question is whether any
 simpler alternative exists. The challenges Istio solves must be dealt with in a microservices system.
 Istio’s complexity is probably not a problem of Istio but rather of the microservices themselves.
+<!-- I don't agree to this paragraph. I do believe that Istio's is much more complex than it needs to be. Even the many advanced use cases Istio can support like mesh expansion, multicluster etc. do not justify all the CRDs and the configuration model. -->
+
