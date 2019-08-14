@@ -11,7 +11,7 @@ the microservices despite the service mesh.
 
 A service mesh is not limited to traditional microservices following the request-response paradigm. Microservices that communicate asynchronously  also benefit from monitoring and security features
 as well as from tools like Prometheus, Grafana, Jaeger, or Kiali.
-<!-- I don't see why SCS won't profit from all features mentioned above so I removed them -->
+
 However, asynchronous microservices
 will probably not use HTTP at all so routing is of little use. Also the resilience features
 are not useful. Asynchronous microservices will work on a message queue eventually. So if the
@@ -36,7 +36,7 @@ Resource Definition) while Istio has many. These add to the complexity of the co
 Also Istio can be stripped down. It
 is possible to exclude each part of the system from the installation. 
 
-Recent efforts such as the SMI (Service Mesh Interface) will reduce mental overhead, standardize service 
+Recent efforts such as the SMI (Service Mesh Interface) intend to reduce mental overhead, standardize service 
 mesh features, and will pave the way for even more tools on top of service mesh capabilities.
 
 The second drawback is the technical overhead: A service mesh adds to the latency and the resource 
