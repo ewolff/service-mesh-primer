@@ -7,18 +7,12 @@ The last chapter has discussed Istio. While Istio is the most popular service me
 [Linkerd 2](https://linkerd.io) is the successor of Linkerd.
 Although Linkerd had been adopted in large production systems, the software was too complex to configure and not performing well. These limitations induced Buoyant to develop a completely new service mesh. The result -- formerly Conduit, today called Linkerd 2 -- was presented in December 2017 as an open source project, written in Go and Rust. Linkerd 2 is an incubation project of the [CNCF](https://www.cncf.io) (Cloud Native Computing Foundation) and currently the only service mesh in the CNCF portfolio.
 
-Although Kubernetes is the most common platform to be used with Istio, it is designed to work with any environment. The complexity of Istio is to some extent caused by this platform neutral design. While the first version of Linkerd was designed alike, Linkerd 2 benefits from its commitment to Kubernetes. Linkerd implements most service mesh features such as monitoring, routing, retries, timeouts, and mTLS. Circuit breaking, tracing, and autorization are missing. While most service mesh implementations use the Envoy service proxy, Linkerd includes its own service proxy implementation (linkerd-proxy).
+Although Kubernetes is the most common platform to be used with Istio, it is designed to work with any environment. The complexity of Istio is to some extent caused by this platform neutral design. While the first version of Linkerd was designed alike, Linkerd 2 is committed to Kubernetes only. Linkerd 2 implements most service mesh features such as monitoring, routing, retries, timeouts, and mTLS. Circuit breaking, tracing, and autorization are missing. While most service mesh implementations use the Envoy service proxy, Linkerd includes its own service proxy implementation (linkerd-proxy).
 
 Rewriting Linkerd for usability and performance while integrating with
 Kubernetes seems to have worked out. The API of Linkerd 2 is much
 cleaner and more consistent than Istio's. It introduces only one
 Kubernetes CRD (Custom Resource Definition) and provides a carefully considered dashboard, shown in [figure 5.1](#fig-other-linkerd-dashboard). Kubernetes users should seriously consider it since it includes most service mesh features in a production ready stage, has a small resource and performance footprint, and provides an excellent developer experience.
-
-<!--TODO: refined Timeouts and retrys-->
-
-<!--TODO: concept of tap-->
-
-<!--TODO: minimal-invasiv durch Ingress-->
 
 {id="fig-other-linkerd-dashboard"}
 
@@ -27,12 +21,6 @@ Kubernetes CRD (Custom Resource Definition) and provides a carefully considered 
 ## Consul {#section-other-consul}
 
 [Consul](https://www.consul.io), originally a solution for service discovery, recently added service mesh use cases. Consul supports service discovery, authorization, mTLS, monitoring through metrics, and routing capabilities. The latter were added by integrating with the Envoy proxy that Istio and other service meshes are also using. Resilience features like circuit breaking, retry, and timeout are yet to be developed. Like Istio, Consul does not depend on any specific orchestration platform but is compatible with Kubernetes and Nomad.
-
-<!--TODO: Screenshot, details-->
-
-<!--TODO: Dokumentation-->
-
-<!--TODO: API-->
 
 ## AWS App Mesh {#section-other-aws-app-mesh}
 
@@ -50,10 +38,6 @@ As shown in [figure 5.2](#fig-other-service-mesh-comparison), Istio has overtake
 
 ![Figure 5.2: Features of service mesh implementations as of September 2019](images/other-comparison.png)
 
-Another criterion is the platform. If the whole application runs in Kubernetes anyway, users can benefit from the simplicity of Linkerd 2. If Consul or AWS are already used, the corresponding service mesh implementations might cause least friction. If multiple clusters or legacy applications outside of the cluster are involved, Istio provides appropriate concepts and configuration.
-
-
-<!-- why would you only benefit from the simplicitiy of Linkerd 2 when running on Kubernetes? -->
-<!-- Chapter 3 (example) gives an overview of Istio's features. It does not talk about multiple clusters or legacy applications outside the cluster. IMHO the features for these scenarios should be explained here. -->
+Another criterion is the platform. If the whole application runs in Kubernetes anyway, users can benefit from the simplicity of Linkerd 2. If Consul or AWS are already used, the corresponding service mesh implementations might cause least friction. If multiple clusters or legacy applications outside of the cluster are involved, Istio provides appropriate concepts and configuration. 
 
 Many microservice applications are dealing with a higher latency compared to monoliths. Communication in a monolith is always a method call in the same process. Communication between microservices goes through the network stack and has therefore a higher latency. A service mesh also adds to the latency, which is not completely balanced by improved load balancing strategies. Also, the sidecares double the number of running containers which has an impact on resource consumption. Fair benchmarks in this space are hard to find because of the different feature sets and configuration. Most results show that although Istio's performance has improved over time, Linkerd 2 is performing better under high load and uses much less resources.
