@@ -260,8 +260,6 @@ and what is going on where in the microservices system.
 {id="fig-example-kiali", width="70%"}
 ![Figure 4.7 Dependencies in Kiali](images/example-kiali.png)
 
-<!-- We could take a new screenshot since the new Kiali version provides even more features -->
-
 The
 [documentation](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#kiali)
 explains how to use Kiali for the example.
@@ -310,8 +308,6 @@ implementation by searching for log entries with severity error. Also
 logging each HTTP request adds little value.  Information about the
 HTTP requests is probably already included in the logs of the
 microservices.
-
-<!--In case we need to reduce the number of words/pages, the logging section is a good candidate since it does not use service mesh features--> 
 
 ## Resilience {#service-mesh-resilience}
 
@@ -533,21 +529,17 @@ discuss:
   the traffic. Mirroring can be used to make sure that the new and the
   old version behave in the same way.
   
-
-This 
+- This 
 [example](https://istio.io/docs/tasks/telemetry/metrics-logs/)
 discusses how Istio support logs,
 showing how log information can be composed from Mixer's data. This
 example outputs the logs to stdout and not to a log infrastructure.
 
-Also, this 
+- Also, this 
 [example](https://istio.io/docs/tasks/telemetry/fluentd/) shows
 how [Fluentd](https://www.fluentd.org/) collects the
 logs Istio provides from all microservices. The logs are stored in
 Elasticsearch and evaluated with Kibana.
-
-<!--I agree that logging won't be a useful service mesh feature for most applications and therefore suggest to remove one of the paragraphs above.-->
-
 
 ## Conclusion
 

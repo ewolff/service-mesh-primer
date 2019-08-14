@@ -9,6 +9,8 @@ metrics about requests but not internal metrics like thread or database pool siz
 Therefore in the example in [chapter 4](#chapter-example) logging had to be implemented in
 the microservices despite the service mesh.
 
+#### Asynchronous Communication
+
 A service mesh is not limited to traditional microservices following the request-response paradigm. Microservices that communicate asynchronously  also benefit from monitoring and security features
 as well as from tools like Prometheus, Grafana, Jaeger, or Kiali.
 
@@ -18,9 +20,13 @@ are not useful. Asynchronous microservices will work on a message queue eventual
 microservice is currently not available, processing the message will take more time - until 
 the microservice is available again. The system should be able to deal with that, though.
 
+#### Maturity
+
 Current implementations such as Istio, Linkerd, Consul, and AWS App Mesh are already mature and stable enough to be considered for production systems. However, carefully testing and comparing the technologies with regard to the individual use case is essential. As the example in [chapter 3](#chapter-example) shows, a service mesh is a piece of infrastructure and can be added and removed easily without changing application code.
 So it is relatively easy to test a service mesh for a concrete application without
 investing too much effort.
+
+#### Overhead
 
 One of the few drawbacks a service mesh has is the mental overhead it adds for the developers. 
 But the challenges service meshes solve must be dealt with in a microservices system anyway, 
@@ -43,3 +49,11 @@ The second drawback is the technical overhead: A service mesh adds to the latenc
 demands. However, those will decrease since all current service mesh implementations are constantly 
 improved. 
 
+#### Service Mesh: Hype or Real?
+
+So even though services meshes are a hype and there are some
+drawbacks, the advantages prevail in most cases. As the impact on the
+code is quite low, it is not too hard to give a service mesh a try and
+determine its value. Even if you decide not to use it in production,
+you will still learn something and understand modern infrastructure
+even better.
