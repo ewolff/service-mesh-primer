@@ -247,6 +247,21 @@ memory and CPU. However, hardware is becoming cheaper constantly and
 adding some hardware resources to improve the reliability of a system
 might be acceptable.
 
+## Legacy {#section-why-legacy}
+
+Service meshes are very useful for microservices architectures because
+they solve many challenges of distributed systems.  Microservice
+architecture has been around for years and its popularity is still
+growing.  But many teams have experienced that slicing their
+monolithic application takes a long time.  A service mesh can add
+monitoring, routing, resilience, and security features to legacy parts
+of the appication and facilitate integrating legacy and hybrid
+applications in modern architectures. Of all service mesh
+implementations, Istio offers the best support for this scenario
+because it is not limited to Kubernetes. It can integrate legacy
+system that run on different infrastructure using [service mesh
+expansion](https://istio.io/docs/setup/kubernetes/additional-setup/mesh-expansion/).
+
 ## Alternatives to Service Meshes {#section-why-alternatives}
 
 While services meshes provide a lot of features, there are also

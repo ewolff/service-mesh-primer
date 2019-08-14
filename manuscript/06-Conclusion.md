@@ -22,11 +22,6 @@ Current implementations such as Istio, Linkerd, Consul, and AWS App Mesh are alr
 So it is relatively easy to test a service mesh for a concrete application without
 investing too much effort.
 
-Microservice architecture has been around for years and its popularity is still growing. 
-But many teams have experienced that slicing their monolithic application takes a long time. 
-A service mesh can add monitoring, routing, resilience, and security features to legacy parts of the appication and facilitate integrating legacy and hybrid applications in modern architectures. Of all implementations, Istio offers the best support for this scenario because it is not limited to Kubernetes. It can integrate legacy system that run on different infrastructure using [service mesh expansion](https://istio.io/docs/setup/kubernetes/additional-setup/mesh-expansion/).
-<!--I'm not sure if this paragraph should be moved somewhere else -->
-
 The few drawbacks a service mesh has are the mental overhead it adds for the developers.
 However, the feature the service mesh provides would need to be implemented differently
 if no service mesh is used. So the mental overhead is probably the smaller problem.
