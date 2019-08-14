@@ -260,8 +260,6 @@ and what is going on where in the microservices system.
 {id="fig-example-kiali", width="70%"}
 ![Figure 4.7 Dependencies in Kiali](images/example-kiali.png)
 
-<!-- We could take a new screenshot since the new Kiali version provides even more features -->
-
 The
 [documentation](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#kiali)
 explains how to use Kiali for the example.
