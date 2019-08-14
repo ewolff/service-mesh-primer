@@ -22,7 +22,7 @@ Kubernetes CRD (Custom Resource Definition) and provides a carefully considered 
 
 {id="fig-other-linkerd-dashboard"}
 
-![Figure 5.1: Linkerd Dashboard](images/linkerd-dashboard.png)
+![Figure 5.1: Linkerd Dashboard](images/others-linkerd-dashboard.png)
 
 ## Consul {#section-other-consul}
 
@@ -48,7 +48,7 @@ As shown in [figure 5.2](#fig-other-service-mesh-comparison), Istio has overtake
 
 {id="fig-other-service-mesh-comparison"}
 
-![Figure 5.2: Features of service mesh implementations as of September 2019](images/other-service-mesh-comparison.png)
+![Figure 5.2: Features of service mesh implementations as of September 2019](images/other-comparison.png)
 
 Another criterion is the platform. If the whole application runs in Kubernetes anyway, users can benefit from the simplicity of Linkerd 2. If Consul or AWS are already used, the corresponding service mesh implementations might cause least friction. If multiple clusters or legacy applications outside of the cluster are involved, Istio provides appropriate concepts and configuration.
 

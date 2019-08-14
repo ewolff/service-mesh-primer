@@ -26,7 +26,7 @@ as service proxy, a widely adopted open source proxy that is used by
 other service meshes, too.
 
 {id="fig-example-istio"}
-![Figure 4.1: Istio Architecture](images/05_istio_full.png)
+![Figure 4.1: Istio Architecture](images/example-istio.png)
 
 In addition to the typical service mesh control and data plane, Istio also adds infrastructure services. They support monitoring the microservice applications. Instead of developing its own tools, Istio integrates established applications such as  *Prometheus*, *Grafana*, and *Jaeger* and the service mesh dashboard *Kiali*. The image shows that the Istio control plane interacts with the orchestrator, which today is in most cases Kubernetes.
 
