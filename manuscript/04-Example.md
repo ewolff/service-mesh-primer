@@ -418,7 +418,9 @@ configuration has the following settings:
   minutes (`baseEjectionTime`). All instances of the microservice
   might be excluded from traffic in this way (`maxEjectionPercent`).
 
-<!--Exceeding the connection limits (maxConnections, maxRequestsPerConnection, http1MaxPendingRequests, http2MaxRequests) will also result in  an error state and trigger the circuit breaker.-->
+* Exceeding the connection limits (maxConnections,
+  maxRequestsPerConnection, http1MaxPendingRequests, http2MaxRequests)
+  will also result in an error state and trigger the circuit breaker.
 
 These limits protect the microservice from
 too much load. And, if an instance has already failed, it
