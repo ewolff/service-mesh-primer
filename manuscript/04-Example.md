@@ -502,7 +502,7 @@ So there must be code that
 handles an HTTP status code 5xx and determines whether the order
 should still be processed.
 
-## How to dig deeper
+## How to Dig Deeper
 
 Istio provides extensive documentation. You can use it to
 familiarize yourself with features of Istio that this chapter does not
