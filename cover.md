@@ -1,4 +1,4 @@
-# Service Mesh - Introduction to the New Infrastructure for Microservices
+# Service Mesh - The New Infrastructure for Microservices
 
 Microservices are still the most hyped software architecture. However,
 they cause additional complexity for operations. Service meshes are
