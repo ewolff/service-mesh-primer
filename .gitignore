@@ -3,3 +3,7 @@ delme*
 *~
 \#*
 .\#*
+*.tex
+*.log
+*.aux
+*.toc
