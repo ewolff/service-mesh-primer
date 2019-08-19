@@ -1,14 +1,14 @@
 # Example with Istio  {#chapter-example}
 
 Typically, an example that shows a technology in action is a great way
-to understand how it actually works. This chapters shows a system
-consisting of multiple microservices and shows how a service mesh can
+to understand how the technology actually works. This chapters shows a system
+consisting of multiple microservices and demonstrates how a service mesh can
 add value to a microservices architecture. The example runs on
 Kubernetes and uses Istio as a service mesh.
 
 ## Istio
 
-Istio is the most popular service mesh, developed by Google and
+Istio is the most popular service mesh and was developed by Google and
 IBM. Just like Kubernetes, it is an Open Source reimplementation of a
 part of Google's internal infrastructure. Istio implements all service
 mesh features described in the [previous chapter](#chapter-what) such as
@@ -28,9 +28,9 @@ other service meshes, too.
 {id="fig-example-istio"}
 ![Figure 4.1: Istio Architecture](images/example-istio.png)
 
-In addition to the typical service mesh control and data plane, Istio also adds infrastructure services. They support monitoring the microservice applications. Instead of developing its own tools, Istio integrates established applications such as  *Prometheus*, *Grafana*, and *Jaeger* and the service mesh dashboard *Kiali*. The image shows that the Istio control plane interacts with the orchestrator, which today is in most cases Kubernetes.
+In addition to the typical service mesh control and data plane, Istio also adds infrastructure services. They support the monitoring of microservice applications. Instead of developing its own tools, Istio integrates established applications such as  *Prometheus*, *Grafana*, and *Jaeger* and the service mesh dashboard *Kiali*. The image shows that the Istio control plane interacts with the orchestrator, which today is in most cases Kubernetes.
 
-In a Kubernetes environment, Istio adds over 20 Custom Resource Definitions (CRDs), which represents the complexity of the Istio API and the richness of configuration options. On the one hand, this allows full customization but on the other hand it clearly affect the usability. Istio also adds a number of components (marked as Istio Core and integrated components in the figure) to an application which add technical complexity.
+In a Kubernetes environment, Istio adds over 20 Custom Resource Definitions (CRDs), which demonstrates the complexity of the Istio API and the richness of configuration options. On the one hand, this allows full customization, but on the other hand it clearly affects the usability. Istio also adds a number of components (marked as Istio Core and integrated components in the figure) to an application which increases technical complexity.
 
 ## Overview {#section-example-overview}
 
@@ -59,10 +59,10 @@ example:
   
 * *Order, shipping,* and *invoicing* are microservices. Shipping and
   invoicing poll data about the orders from the order
-  microservice using REST. Istio understands HTTP and REST so it can
+  microservice using REST. Istio understands HTTP and REST, so it can
   support this interface very well. The data format
   is based on JSON. The feed contains a simple JSON
-  documents with a list of link to the individuals orders.
+  document with a list of links to the individual orders.
   
 * All three microservices use the same *Postgres database*.
   
@@ -77,7 +77,7 @@ the example.
 ## How the Example Uses Istio {#section-example-istio}
 
 A closer look at the `microserivces.yaml` file shows
-that the deployment for the microservices has no Istio-specific
+that the deployment for the microservices contains no Istio-specific
 information. This is an advantage that makes it
 easier to use Istio. It also means that Istio works with any type of
 microservice no matter what programming language or frameworks
@@ -121,16 +121,16 @@ that the user provides. The namespace `istio-system` contains
 all Kubernetes resources that belong to Istio itself.
 
 The sidecars contain the proxies. Istio routes all traffic between the
-microservice through these proxies as described in [chapter
+microservices through these proxies as described in [chapter
 2](#chapter-what).
 
 ## Monitoring with Prometheus and Grafana {#section-example-monitoring}
 
 As mentioned in [section 2.1](#section-why-monitoring), a service mesh
-provide basic monitoring information without any additional
+provides basic monitoring information without any additional
 effort. Istio includes *[Prometheus](https://prometheus.io/)* to store
 metrics for analysis. Istio also includes
-*[Grafana](https://grafana.com/)*; a tools for the analysis of
+*[Grafana](https://grafana.com/)*, a tool for the analysis of
 the metrics.
 
 Of course, this approach supports only metrics that the proxy can
@@ -155,7 +155,7 @@ data.
 
 Prometheus is multi-dimensional. The destination is one dimension of
 the data. These metrics could be summed up by dimensions such as the
-destination, to understand which destination receives how much
+destination to understand which destination receives how much
 traffic.
 
 {id="fig-example-prometheus", width=65%}
@@ -194,7 +194,7 @@ already in place.
 ## Tracing {#section-example-tracing}
 
 As explained in [section 2.1](#section-why-monitoring), tracing might
-be important to trace calls across microservices and do a root cause
+be important to trace calls across microservices and to do a root cause
 analysis based on that information.
 For tracing, Istio uses [Jaeger](https://www.jaegertracing.io/).
 
@@ -212,9 +212,9 @@ service contacted the Istio Mixer to make sure the policies are enforced.
 
 [Figure 4.6](#fig-example-tracing-dependencies) shows a different type of
 information Jaeger provides: the dependencies between the
-microservices. Shipping and invoicing use order to receive the
-information about the latest orders. Order reports metrics to
-Mixer. And finally, order is accessed by the Istio gateway when
+microservices. The shipping and invoicing microservices use the order microservice to receive
+information about the latest orders. The order microservice reports metrics to
+Mixer. And finally, the order microservice is accessed by the Istio gateway when
 external requests are forwarded to it. This information about
 dependencies might be useful to get an overview about the architecture
 of the system.
@@ -245,12 +245,12 @@ headers.
 
 ## Visualization with Kiali
 
-With the information from the tracing, Jaeger can provide a graph with
+With the information from the tracing, Jaeger can provide a graph depicting
 the dependencies between the microservices. However,
 [Kiali](https://www.kiali.io/) is a tool that is specialized in
 generating dependency graphs of microservices. It also shows traffic
 rates, latencies, and health of the services.  That way, it provides
-not just a great overview of the microservices and their relationships
+not just a great overview of the microservices and their relationships,
 but also information about how they are communicating with each
 other. That makes it clearer what the status of the dependencies is
 and what is going on where in the microservices system.
@@ -319,8 +319,8 @@ could bring down the complete microservices system.
 
 As explained in [section 3.3](#section-why-resilience), failure
 cascades can happen if a called microservice returns an
-error. It could be even worse if the called microservices does return
-successfully but takes a long time. In that case, resources such as
+error. It could be even worse if the called microservice does return
+successfully, but takes a long time. In that case, resources such as
 threads might be blocked while waiting for a reply. In the worst case,
 all threads end up blocked and the calling microservice fails.
 
@@ -336,17 +336,17 @@ they are resilient against the delays and failures.
 
 #### Fault Injection
 
-The configuration in the file `fault-injection.yaml`
+The configuration is in the file `fault-injection.yaml`
 from the example. It makes 100 percent of the calls to the order microservice
 fail with HTTP status 500. See the
 [documentation](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#fault-injection)
 about how to apply this configuration to your system.
 
 Actually, the microservice will still work after applying the fault
-injection. If you add a new order to the system,though, it will not be
-propagated to shipping and invoicing. You can make those microservices
+injection. If you add a new order to the system, though, it will not be
+propagated to the microservices shipping and invoicing. You can make those microservices
 poll the order microservice by pressing the pull button in the web UI
-of shipping and invoicing. In that case, an error will be shown. So
+of the shipping and invoicing microservices. In that case, an error will be shown. So
 the system is already quite resilient because it uses polling.
 If the shipping microservice would call the order microservice
 -- for example, to fulfill a request --, the shipping
@@ -359,14 +359,14 @@ Another possibility is to inject a delay, see the
 [documentation](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#delay-injection). If
 you make the shipping microservice poll the order microservice, it
 will take longer but it will work fine. Otherwise the system just
-works normally. So again due to polling the system is already quite
+works normally. So again, due to polling the system is already quite
 resilient.
 
 #### Implementing Resilience with Istio
 
-Fault and delay injection are just useful to test the resilience of a
+Fault and delay injection are only useful to test the resilience of a
 system. However, as explained in [section
-3.3](#section-why-resilience) circuit breaker are one way to actually
+3.3](#section-why-resilience) circuit breakers are one way to actually
 make a system
 more resilient. 
 
@@ -395,7 +395,7 @@ spec:
 The previous listing shows a configuration of a circuit breaker for
 Istio. See the
 [documentation](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#circuit-breaker)
-about how to apply it. The
+for information about how to apply it. The
 configuration has the following settings:
 
 * A maximum of one TCP connection is allowed for the service
@@ -405,7 +405,7 @@ configuration has the following settings:
   2 (`http2MaxRequests`) request might be pending.
   
 * Each minute, each microservice instance is checked (`interval`). If
-  it has returned one error (`consecutiveErrors`) -- that an HTTP
+  it has returned one error (`consecutiveErrors`) --  an HTTP
   status 5xx or a timeout -- it is excluded from traffic for ten
   minutes (`baseEjectionTime`). All instances of the microservice
   might be excluded from traffic in this way (`maxEjectionPercent`).
@@ -461,11 +461,11 @@ The previous listing shows a part of the file `retry.yaml`. It configures
 retries and timeouts for the order microservice. Calls to the order
 microservice are retried up to 20 times. For each retry, a timeout of
 5 seconds is configured. However, there is also a total timeout of
-10 seconds. So if the retries don't succeed after 10 seconds, the call
+10 seconds. So if the retries don't succeed within 10 seconds, the call
 will fail. The Istio's default timeout is 15 seconds.
 
-`retryOn` define when a request is considered failed. In this case any
-HTTP status code 5xx, or connection failures such as timeouts are
+`retryOn` defines when a request is considered failed. In this case any
+HTTP status code 5xx or connection failures such as timeouts are
 considered failed requests.
 
 The rest of the file is not shown in the listing. It adds retries to
@@ -473,7 +473,7 @@ the Istio Ingress gateway for the order microservice.
 
 See the
 [documentation](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#retry)
-about how to make the order service fail and then fix the problem by
+for information about how to make the order service fail and then fix the problem by
 applying this configuration to the system.
 
 #### Resilience: Impact on the Code
@@ -484,7 +484,7 @@ the number of failures. But even with Istio's resilience features,
 there will still be calls to
 microservices that fail. So while retry, timeout, and circuit breaker
 do not require any changes to the code, the code still needs to take
-of care of failed requests. Those result in a response with HTTP
+care of failed requests. These result in a response with HTTP
 status code 5xx. How failures are handled is a part of the domain
 logic. For example, if the warehouse management is down, it might not
 be
@@ -545,13 +545,13 @@ any additional code. The microservices are treated as black boxes
 i.e. the metrics only cover the communication between the
 microservices and the infrastructure. However, this could in fact be
 enough for a production system as it shows the performance as
-experiences by the user.
+experienced by the user.
 
 Some code has to be added to the microservices for tracing so that
 they forward the tracing headers to the outgoing HTTP requests. Still
 the complete infrastructure is provided by Istio.
 
-Istio does not provide an infrastructure for logging. However, it can
+Istio does not provide an infrastructure for logging, but it can
 log information for each HTTP request to a logging
 infrastructure. However, logging is often used to look inside the
 microservices and understand what they actually do. This can only be
@@ -559,12 +559,12 @@ implemented in the code of the microservices. Still Istio could at
 least provide some very basic information in the logs without any
 impact on the code or the microservices.
 
-Istio allows to simulate problem in the system by injecting delay and
+Istio allows to simulate problems in the system by injecting delays and
 faults. That is useful to test the system's resilience. Istio's
 circuit breaker and retries even help to implement resilience. If a
-microservices fails, the system still needs to compensate that
+microservice fails, the system still needs to compensate that
 failure. Dealing with a failed service must be covered by the domain
 logic. The microservices in the example are self-contained i.e. all
 data for the logic is stored in the microservice. So a failed
-microservice has very limited impact. However, his is a feature of the
+microservice has very limited impact. However, this is a feature of the
 architecture and not the service mesh.
