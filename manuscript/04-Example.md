@@ -385,7 +385,6 @@ spec:
       http:
         http1MaxPendingRequests: 1
         http2MaxRequests: 1
-        maxRequestsPerConnection: 1
     outlierDetection:
       consecutiveErrors: 1
       interval: 1m
@@ -402,9 +401,6 @@ configuration has the following settings:
 * A maximum of one TCP connection is allowed for the service
   (`maxConnections`).
 
-* There may be just one request per connection
-  (`maxRequestsPerConnection`).
-
 * In total, just one HTTP 1.1 (`http1MaxPendingRequests`) and one HTTP
   2 (`http2MaxRequests`) request might be pending.
   
@@ -415,7 +411,7 @@ configuration has the following settings:
   might be excluded from traffic in this way (`maxEjectionPercent`).
 
 * Exceeding the connection limits (maxConnections,
-  maxRequestsPerConnection, http1MaxPendingRequests, http2MaxRequests)
+  http1MaxPendingRequests, http2MaxRequests)
   will also result in an error state and trigger the circuit breaker.
 
 These limits protect the microservice from
