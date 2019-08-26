@@ -25,8 +25,7 @@ and telemetry data, and manage certificates. Istio uses [*Envoy*](https://www.en
 as service proxy, a widely adopted open source proxy that is used by
 other service meshes, too.
 
-{id="fig-example-istio"}
-![Figure 4.1: Istio Architecture](images/example-istio.png)
+![Figure 4.1: Istio Architecture](images/example-istio.png){#fig-example-istio}
 
 In addition to the typical service mesh control and data plane, Istio also adds infrastructure services. They support the monitoring of microservice applications. Instead of developing its own tools, Istio integrates established applications such as  *Prometheus*, *Grafana*, and *Jaeger* and the service mesh dashboard *Kiali*. The image shows that the Istio control plane interacts with the orchestrator, which today is in most cases Kubernetes.
 
@@ -42,8 +41,7 @@ microservice will use the data about the order to create a
 shipment. The invoicing and the shipping microservice present a web
 interface to the user, too.
 
-{id="fig-example-overview"}
-![Figure 4.2: Overview of the Example](images/example-overview.png)
+![Figure 4.2: Overview of the Example](images/example-overview.png){#fig-example-overview}
 
 [Figure 4.2](#fig-example-overview) shows the structure of the
 example:
@@ -95,7 +93,6 @@ Docker container to each Kubernetes pod. Actually, if you list the
 Kubernetes pods with `kubectl get pods`, you will notice that for each
 pod it says `2/2`:
 
-{linenos=off}
 ~~~~~~~~
 [~/microservice-istio]kubectl get pods
 NAME                READY STATUS  RESTARTS AGE
@@ -158,8 +155,7 @@ the data. These metrics could be summed up by dimensions such as the
 destination to understand which destination receives how much
 traffic.
 
-{id="fig-example-prometheus", width=65%}
-![Figure 4.3: Prometheus with Istio Metrics](images/example-prometheus.png)
+![Figure 4.3: Prometheus with Istio Metrics](images/example-prometheus.png){#fig-example-prometheus width=65%}
 
 <!-- I suggest removing the browser frame from all images -->
 
@@ -178,8 +174,7 @@ volume, the success
 rate and the duration. This gives a great overview about the
 state of the service.
 
-{id="fig-example-grafana", width=65%}
-![Figure 4.4: Grafana with Istio Dashboard](images/example-grafana.png)
+![Figure 4.4: Grafana with Istio Dashboard](images/example-grafana.png){#fig-example-grafana width=65%}
 
 Istio supplies also other dashboards.
 The Istio performance dashboard provides a general overview about the
@@ -202,8 +197,7 @@ The documentation of the example contains a
 [section](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#tracing)
 about tracing.
 
-{id="fig-example-tracing", width="60%"}
-![Figure 4.5: Jaeger Trace](images/example-tracing.png)
+![Figure 4.5: Jaeger Trace](images/example-tracing.png){#fig-example-tracing width="60%"}
 
 [Figure 4.5](#fig-example-tracing) shows an example of a
 trace for a request to the shipping microservice. The
@@ -219,8 +213,7 @@ external requests are forwarded to it. This information about
 dependencies might be useful to get an overview about the architecture
 of the system.
 
-{id="fig-example-tracing-dependencies", width="60%"}
-![Figure 4.6: Jaeger Dependencies](images/example-tracing-dependencies.png)
+![Figure 4.6: Jaeger Dependencies](images/example-tracing-dependencies.png){#fig-example-tracing-dependencies width="60%"}
 
 To understand which incoming request caused which outgoing requests,
 Jaeger relies on specific HTTP header. The values in the headers of
@@ -257,8 +250,7 @@ and what is going on where in the microservices system.
 [Figure
 4.7](#fig-example-kiali) shows an example of a dependency graph.
 
-{id="fig-example-kiali", width="70%"}
-![Figure 4.7 Dependencies in Kiali](images/example-kiali.png)
+![Figure 4.7 Dependencies in Kiali](images/example-kiali.png){#fig-example-kiali width="70%"}
 
 The
 [documentation](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#kiali)
@@ -283,8 +275,7 @@ For the example, a custom log infrastructure was set up. This
 infrastructure uses Elasticsearch to store logs and Kibana to analyze
 them.
 
-{id="fig-example-logging", width="30%"}
-![Figure 4.8 Logging in the Example](images/example-logging.png)
+![Figure 4.8 Logging in the Example](images/example-logging.png){#fig-example-logging width="30%"}
 
 [Figure 4.8](#fig-example-logging) shows how logging is implemented in the
 example. Each microservice must directly write JSON data to the
@@ -370,8 +361,7 @@ system. However, as explained in [section
 make a system
 more resilient. 
 
-{linenos=off, lang="yaml"}
-~~~~~~~~
+~~~~~~~~ {.yaml}
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
@@ -437,8 +427,8 @@ Retries and timeouts as explained in [section
 the Istio configuration. That makes it easy to define a timeout per
 retry and a maximum time span that all retries together might take.
 
-{linenos=off, lang="yaml"}
-~~~~~~~~
+~~~~~~~~ {.yaml}
+
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
