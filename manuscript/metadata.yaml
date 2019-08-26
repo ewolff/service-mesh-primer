@@ -1,20 +1,32 @@
 title: "Service Mesh"
 subtitle: "The New Infrastructure for Microservices"
-author: [Hanna Prinz, Eberhard Wolff]
-subject: "Service Mesh"
+author: 
+    - name: Hanna Prinz
+      bio: Foo
+      twitter: bar
+      image: baz
+    - name: Eberhard Wolff
+      bio: Foo
+      twitter: bar
+      image: baz
 lang: en-US
-date: "2019-08-20"
+date: "August 2019"
 keywords: [Service Mesh, Kubernetes, Istio, Linkerd]
 toc: true
-toc-own-page: true
-links-as-notes: true
 isbn: 978-3-9821126-1-9
-lowertitleback-extra: |
-    ```{=latex}
-    \textbf{Service Mesh}\\
-    Published by innoQ Deutschland GmbH\\
-    1st Edition \textperiodcentered{} August 2019\\[2ex]
-    Copyright © 2019 Hanna Prinz, Eberhard Wolff\\
-    This work is licensed under a \oldhref{http://creativecommons.org/licenses/by/4.0/deed.en_US}{Creative Commons Attribution 4.0 International License}.\\
-    This book is available at \url{http://leanpub.com/service-mesh-primer}.\\
-    ```
+edition: 1st Edition
+#about: true
+imprint:
+    rights: |
+        Copyright © 2019 Hanna Prinz, Eberhard Wolff \
+        This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/deed.en_US).
+    notes: This book is available at <http://leanpub.com/service-mesh-primer>.
+#lowertitleback-extra: |
+#    ```{=latex}
+#    \textbf{Service Mesh}\\
+#    Published by innoQ Deutschland GmbH\\
+#    1st Edition \textperiodcentered{} August 2019\\[2ex]
+#    Copyright © 2019 Hanna Prinz, Eberhard Wolff\\
+#    This work is licensed under a \oldhref{http://creativecommons.org/licenses/by/4.0/deed.en_US}{Creative Commons Attribution 4.0 International License}.\\
+#    This book is available at \url{http://leanpub.com/service-mesh-primer}.\\
+#    ```
