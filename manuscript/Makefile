@@ -1,7 +1,7 @@
 BOOKNAME=service-mesh-primer
 
 SOURCE=Book.txt
-TARGET=$(BOOKNAME).pdf $(BOOKNAME).epub $(BOOKNAME).mobi
+TARGET=$(BOOKNAME).pdf $(BOOKNAME)-printable.pdf $(BOOKNAME).epub $(BOOKNAME).mobi
 
 FILES= $(shell cat Book.txt| grep -v '\#')
 
@@ -11,7 +11,12 @@ $(BOOKNAME).pdf: $(SOURCE) $(FILES)
 	--template=primer --top-level-division=chapter --pdf-engine=xelatex \
 	--metadata-file=metadata.yaml
 
-$(BOOKNAME).epub: $(SOURCE) $(FILES)
+$(BOOKNAME)-printable.pdf: $(SOURCE) $(FILES)
+	pandoc $(FILES) --from=markdown --output=$(BOOKNAME).pdf \
+	--template=primer --top-level-division=chapter --pdf-engine=xelatex \
+	--metadata-file=metadata.yaml -V cropmarks=true
+
+$(BOOKNAME).epub: $(SOURCE) $(FILES) metadata.yaml
 	pandoc $(FILES) \
 	--from=markdown \
 	--toc \
@@ -27,7 +32,7 @@ $(BOOKNAME).epub: $(SOURCE) $(FILES)
 	echo "Mobi is still a TODO"
 	#ebook-convert $< $@ || true
 
-$(BOOKNAME).tex: $(SOURCE) $(FILES)
+$(BOOKNAME).tex: $(SOURCE) $(FILES) metadata.yaml
 	pandoc $(FILES) --from=markdown --output=$(BOOKNAME).tex \
 	--template=primer --top-level-division=chapter --pdf-engine=xelatex \
 	--metadata-file=metadata.yaml
