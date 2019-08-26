@@ -1,32 +1,26 @@
 BOOKNAME=service-mesh-primer
 
-SOURCE=Book.txt
-TARGET=$(BOOKNAME).pdf $(BOOKNAME)-printable.pdf $(BOOKNAME).epub
+PRIMER_TOOLCHAIN=gitlabregistry.innoq.com/innoq/tex-toolchain/primer-toolchain:latest
+EBOOK_CONVERT=gitlabregistry.innoq.com/innoq/tex-toolchain/ebook-convert:latest
 
-FILES= $(shell cat Book.txt| grep -v '\#')
+# detect WSL and remove /mnt from pwd
+var := $(shell grep -q Microsoft /proc/version)
+ifneq ($(.SHELLSTATUS),0)
+  PWD := $(subst mnt/,,$(PWD))
+endif
 
-
-$(BOOKNAME).pdf: $(SOURCE) $(FILES) metadata.yaml
-	@echo Build $(BOOKNAME).pdf
-	pandoc $(FILES) --from=markdown --output=$(BOOKNAME).pdf --template=primer --top-level-division=chapter --pdf-engine=xelatex --metadata-file=metadata.yaml
-
-$(BOOKNAME)-printable.pdf: $(SOURCE) $(FILES) metadata.yaml
-	@echo Build $(BOOKNAME)-printable.pdf
-	pandoc $(FILES) --from=markdown --output=$(BOOKNAME)-printable.pdf --template=primer --top-level-division=chapter --pdf-engine=xelatex --metadata-file=metadata.yaml -V cropmarks=true
-
-$(BOOKNAME).epub: $(SOURCE) $(FILES) metadata.yaml
-	@echo Build $(BOOKNAME).epub
-	pandoc $(FILES) --from=markdown --toc --standalone --output=$(BOOKNAME).epub --template=primer --top-level-division=chapter --to=epub3 --metadata-file=metadata.yaml --epub-cover-image images/title_page.jpg
-
-$(BOOKNAME).tex: $(SOURCE) $(FILES) metadata.yaml
-	@echo Build $(BOOKNAME).tex
-	pandoc $(FILES) --from=markdown --output=$(BOOKNAME).tex --template=primer --top-level-division=chapter --pdf-engine=xelatex --metadata-file=metadata.yaml
-
-all: $(TARGET)
+build:
+	@echo "Building PDFs, epub3 and mobi..."
+	docker pull $(PRIMER_TOOLCHAIN) -q
+	docker pull $(EBOOK_CONVERT) -q
+	docker run -ti --rm -v ${PWD}:/workdir $(PRIMER_TOOLCHAIN) make -f Makefile.pandoc
+	docker run -ti --rm -v ${PWD}:/workdir -w /workdir $(EBOOK_CONVERT) $(BOOKNAME).epub $(BOOKNAME).mobi
+	@echo "Done."
 
 clean:
-	@echo "Cleaning..."
-	rm -rf $(TARGET)
+	@echo "Cleaning PDFs, epub3 and mobi..."
+	docker run -ti --rm -v ${PWD}:/workdir $(PRIMER_TOOLCHAIN) make -f Makefile.pandoc clean
+	rm -rf $(BOOKNAME).mobi
 
 .PHONY: clean all
-.DEFAULT_GOAL := all
+.DEFAULT_GOAL := build
