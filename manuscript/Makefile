@@ -6,7 +6,7 @@ EBOOK_CONVERT=gitlabregistry.innoq.com/innoq/tex-toolchain/ebook-convert:latest
 # detect WSL and remove /mnt from pwd
 var := $(shell grep -q Microsoft /proc/version)
 ifneq ($(.SHELLSTATUS),0)
-  PWD := $(subst mnt/,,$(PWD))
+  PWD := $(subst mnt/,,$(shell readlink -f ${PWD}))
 endif
 
 build:
