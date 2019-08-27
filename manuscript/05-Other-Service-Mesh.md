@@ -22,7 +22,7 @@ Kubernetes CRD (Custom Resource Definition) and provides a carefully considered 
 
 ## AWS App Mesh {#section-other-aws-app-mesh}
 
-As the name suggests, [AWS App Mesh](http://aws.amazon.com/app-mesh/) is a service mesh developed for AWS. It was first introduced in November 2018. Like Istio and Consul, AWS App Mesh uses a pre-configured but customizable Envoy as service proxy and adds its own control plane. It is integrated with other AWS tools like CloudWatch for metrics and X-Ray for traces. AWS App Mesh already supports essential service mesh features like monitoring, routing and mTLS. AWS users can activate App Mesh in Fargate, EC2, EKS, and EC2 and add configuration through JSON. In Kubernetes environments, configuration can be applied through CRDs and applied by the [AWS App Mesh Controller](https://github.com/aws/aws-app-mesh-controller-for-k8s).
+As the name suggests, [AWS App Mesh](http://aws.amazon.com/app-mesh/) is a service mesh developed for AWS. It was first introduced in November 2018. Like Istio and Consul, AWS App Mesh uses a pre-configured but customizable Envoy as service proxy and adds its own control plane. It is integrated with other AWS tools like CloudWatch for metrics and X-Ray for traces. AWS App Mesh already supports essential service mesh features like monitoring and routing. AWS users can activate App Mesh in Fargate, EC2, EKS, and EC2 and add configuration through JSON. In Kubernetes environments, configuration can be applied through CRDs and applied by the [AWS App Mesh Controller](https://github.com/aws/aws-app-mesh-controller-for-k8s).
 
 AWS is the most recent service mesh implementation, but since AWS has the biggest market share for cloud computing, AWS App Mesh is expected to stay and grow.  
 
