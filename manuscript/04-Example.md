@@ -74,7 +74,7 @@ the example.
 
 ## How the Example Uses Istio {#section-example-istio}
 
-A closer look at the `microserivces.yaml` file shows
+A closer look at the `microservices.yaml` file shows
 that the deployment for the microservices contains no Istio-specific
 information. This is an advantage that makes it
 easier to use Istio. It also means that Istio works with any type of
