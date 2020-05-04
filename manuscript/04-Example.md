@@ -18,7 +18,7 @@ started with first class support for Kubernetes.
 
 [Figure 4.1](#fig-example-istio) reflects how a service mesh is
 located between the orchestrator (top) and the application
-(bottom). In Istio version 1.5, the formerly distributed Control Plane 
+(bottom). In Istio version 1.5, the formerly distributed control plane 
 was unified into a single process (istiod). It communicates with the service
 proxies to distribute configuration, receive recorded network traffic
 and telemetry data, and manage certificates. Istio uses [*Envoy*](https://www.envoyproxy.io)
@@ -31,7 +31,7 @@ In addition to the typical service mesh control and data plane, Istio also adds 
 
 In a Kubernetes environment, Istio adds over 20 Custom Resource Definitions (CRDs), which demonstrates 
 the complexity of the Istio API and the richness of configuration options. On the one hand, this allows 
-full customization, but on the other hand it clearly affects the usability. Istio's technical complexity however 
+full customization, but on the other hand it clearly affects the usability. Istio's technical complexity, however, 
 was drastically reduced by the monolithic control plane in Istio 1.5.
 
 ## Overview {#section-example-overview}
@@ -458,7 +458,7 @@ retries and timeouts for the order microservice. Calls to the order
 microservice are retried up to 20 times. For each retry, a timeout of
 5 seconds is configured. However, there is also a total timeout of
 10 seconds. So if the retries don't succeed within 10 seconds, the call
-will fail. The Istio's default timeout is 15 seconds.   
+will fail. Istio's default timeout is 15 seconds.   
 
 `retryOn` defines when a request is considered failed. In this case any
 HTTP status code 5xx or connection failures such as timeouts are
@@ -466,7 +466,7 @@ considered failed requests.
 
 While Istio allows retry and timeout configuration only on the level of 
 services, other products like Linkerd 2 allow fine-grained configuration 
-by request path or method.
+per request path or method.
 
 The rest of the file is not shown in the listing. It adds retries to
 the Istio Ingress gateway for the order microservice.

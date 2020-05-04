@@ -18,7 +18,7 @@ Kubernetes CRD (Custom Resource Definition) and provides a carefully considered 
 
 ## Consul {#section-other-consul}
 
-[Consul](https://www.consul.io), originally a solution for service discovery, recently added service mesh use cases. Consul supports service discovery, authorization, mTLS, monitoring through metrics, routing and resilience capabilities. The latter were added by integrating with the Envoy proxy that Istio and other service meshes are also using. Like Istio, Consul does not depend on any specific orchestration platform, but is compatible with Kubernetes, Nomad, and VMs.
+[Consul](https://www.consul.io), originally a solution for service discovery, recently added service mesh use cases. Consul supports service discovery, authorization, mTLS, monitoring through metrics, routing, and resilience capabilities. The latter were added by integrating with the Envoy proxy that Istio and other service meshes are also using. Like Istio, Consul does not depend on any specific orchestration platform, but is compatible with Kubernetes, Nomad, and VMs.
 
 ## AWS App Mesh {#section-other-aws-app-mesh}
 

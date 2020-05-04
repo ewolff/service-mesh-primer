@@ -246,7 +246,7 @@ memory and CPU. However, hardware is becoming cheaper constantly and
 adding some hardware resources to improve the reliability of a system
 might be acceptable.
 
-The amount of resource consumption and latency highly depends on the 
+The resource consumption and latency highly depends on the 
 service mesh implementation and version, settings, and the amount of 
 network traffic of the specific application. Therefore, if 
 either is restricted by requirements, it should be measured individually in a 
