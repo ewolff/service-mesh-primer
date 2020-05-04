@@ -143,7 +143,7 @@ increase resilience: If the failure is transient, the retry can make
 the request succeed. However, retries also increase the number of
 requests. So the called microservice will have a higher load and might
 become unstable. A circuit breaker might be used to solve this problem.
-  
+
 ### Timeout
 
 *Timeouts* make sure that the calling microservice is not blocked for
@@ -245,6 +245,12 @@ Of course, the service mesh itself needs to run. This will consume
 memory and CPU. However, hardware is becoming cheaper constantly and
 adding some hardware resources to improve the reliability of a system
 might be acceptable.
+
+The amount of resource consumption and latency highly depends on the 
+service mesh implementation and version, settings, and the amount of 
+network traffic of the specific application. Therefore, if 
+either is restricted by requirements, it should be measured individually in a 
+test deployment and compared to a mesh-free deployment.
 
 ## Legacy {#section-why-legacy}
 

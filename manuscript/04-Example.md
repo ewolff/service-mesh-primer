@@ -16,20 +16,23 @@ metrics, logging, tracing, traffic routing, circuit breaking, mTLS, and
 authorization. Although Istio is designed to be platform-independent, it
 started with first class support for Kubernetes.
 
-[Figure 4.1](#fig-example-istio) reflects how the service mesh is
+[Figure 4.1](#fig-example-istio) reflects how a service mesh is
 located between the orchestrator (top) and the application
-(bottom). The four core components of Istio make up the control plane:
-Galley, Pilot, Mixer, and Citadel. They communicate with the service
-proxies to distribute configurations, receive recorded network traffic
+(bottom). In Istio version 1.5, the formerly distributed Control Plane 
+was unified into a single process (istiod). It communicates with the service
+proxies to distribute configuration, receive recorded network traffic
 and telemetry data, and manage certificates. Istio uses [*Envoy*](https://www.envoyproxy.io)
 as service proxy, a widely adopted open source proxy that is used by
 other service meshes, too.
 
 ![Figure 4.1: Istio Architecture](images/example-istio.png){#fig-example-istio}
 
-In addition to the typical service mesh control and data plane, Istio also adds infrastructure services. They support the monitoring of microservice applications. Instead of developing its own tools, Istio integrates established applications such as  *Prometheus*, *Grafana*, and *Jaeger* and the service mesh dashboard *Kiali*. The image shows that the Istio control plane interacts with the orchestrator, which today is in most cases Kubernetes.
+In addition to the typical service mesh control and data plane, Istio also adds infrastructure services. They support the monitoring of microservice applications. Instead of developing its own tools, Istio integrates established applications such as *Prometheus*, *Grafana*, and *Jaeger* and the service mesh dashboard *Kiali*. The image shows that the Istio control plane interacts with the orchestrator, which today is in most cases Kubernetes.
 
-In a Kubernetes environment, Istio adds over 20 Custom Resource Definitions (CRDs), which demonstrates the complexity of the Istio API and the richness of configuration options. On the one hand, this allows full customization, but on the other hand it clearly affects the usability. Istio also adds a number of components (marked as Istio Core and integrated components in the figure) to an application which increases technical complexity.
+In a Kubernetes environment, Istio adds over 20 Custom Resource Definitions (CRDs), which demonstrates 
+the complexity of the Istio API and the richness of configuration options. On the one hand, this allows 
+full customization, but on the other hand it clearly affects the usability. Istio's technical complexity however 
+was drastically reduced by the monolithic control plane in Istio 1.5.
 
 ## Overview {#section-example-overview}
 
@@ -157,7 +160,7 @@ traffic.
 
 ![Figure 4.3: Prometheus with Istio Metrics](images/example-prometheus.png){#fig-example-prometheus width=65%}
 
-<!-- I suggest removing the browser frame from all images -->
+
 
 #### Grafana
 
@@ -191,7 +194,7 @@ already in place.
 As explained in [section 2.1](#section-why-monitoring), tracing might
 be important to trace calls across microservices and to do a root cause
 analysis based on that information.
-For tracing, Istio uses [Jaeger](https://www.jaegertracing.io/).
+For tracing, Istio uses [Jaeger](https://www.jaegertracing.io/) by default.
 
 The documentation of the example contains a
 [section](https://github.com/ewolff/microservice-istio/blob/master/HOW-TO-RUN.md#tracing)
@@ -201,8 +204,8 @@ about tracing.
 
 [Figure 4.5](#fig-example-tracing) shows an example of a
 trace for a request to the shipping microservice. The
-user started a poll for new data on the order microservice. Then the
-service contacted the Istio Mixer to make sure the policies are enforced.
+user started a poll for new data on the shipping microservice, which resulted in a 
+request to the order service that took 9.15 miliseconds.
 
 [Figure 4.6](#fig-example-tracing-dependencies) shows a different type of
 information Jaeger provides: the dependencies between the
@@ -216,7 +219,7 @@ of the system.
 ![Figure 4.6: Jaeger Dependencies](images/example-tracing-dependencies.png){#fig-example-tracing-dependencies width="60%"}
 
 To understand which incoming request caused which outgoing requests,
-Jaeger relies on specific HTTP header. The values in the headers of
+Jaeger relies on specific HTTP headers. The values in the headers of
 the incoming requests have to be added to any outgoing request.  This
 means that tracing cannot be transparent to the microservices. They
 have to include some code to forward the tracing headers from the
@@ -299,6 +302,10 @@ implementation by searching for log entries with severity error. Also
 logging each HTTP request adds little value.  Information about the
 HTTP requests is probably already included in the logs of the
 microservices.
+
+## Security {#service-mesh-security}
+
+TODO!!!
 
 ## Resilience {#service-mesh-resilience}
 
@@ -428,7 +435,6 @@ the Istio configuration. That makes it easy to define a timeout per
 retry and a maximum time span that all retries together might take.
 
 ~~~~~~~~ {.yaml}
-
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -452,11 +458,15 @@ retries and timeouts for the order microservice. Calls to the order
 microservice are retried up to 20 times. For each retry, a timeout of
 5 seconds is configured. However, there is also a total timeout of
 10 seconds. So if the retries don't succeed within 10 seconds, the call
-will fail. The Istio's default timeout is 15 seconds.
+will fail. The Istio's default timeout is 15 seconds.   
 
 `retryOn` defines when a request is considered failed. In this case any
 HTTP status code 5xx or connection failures such as timeouts are
 considered failed requests.
+
+While Istio allows retry and timeout configuration only on the level of 
+services, other products like Linkerd 2 allow fine-grained configuration 
+by request path or method.
 
 The rest of the file is not shown in the listing. It adds retries to
 the Istio Ingress gateway for the order microservice.
@@ -499,7 +509,7 @@ discuss:
   and are therefore a great addition to this chapter.
 
 - Istio provides support for security. See [the security
-  task](https://istio.io/docs/tasks/security/) for some hands-on
+  tasks](https://istio.io/docs/tasks/security/) for some hands-on
   exercises
   for this feature. The exercises cover encrypted communication,
   authentication and authorization.
@@ -516,16 +526,10 @@ discuss:
   old version behave in the same way.
   
 - This 
-[example](https://istio.io/docs/tasks/telemetry/metrics-logs/)
-discusses how Istio support logs,
-showing how log information can be composed from Mixer's data. This
+[example](https://istio.io/docs/tasks/observability/logs/access-log/)
+discusses how logs can be assembled from Envoys access logs. This
 example outputs the logs to stdout and not to a log infrastructure.
 
-- Also, this 
-[example](https://istio.io/docs/tasks/telemetry/fluentd/) shows
-how [Fluentd](https://www.fluentd.org/) collects the
-logs Istio provides from all microservices. The logs are stored in
-Elasticsearch and evaluated with Kibana.
 
 ## Conclusion
 
@@ -541,13 +545,11 @@ Some code has to be added to the microservices for tracing so that
 they forward the tracing headers to the outgoing HTTP requests. Still
 the complete infrastructure is provided by Istio.
 
-Istio does not provide an infrastructure for logging, but it can
-log information for each HTTP request to a logging
-infrastructure. However, logging is often used to look inside the
+Istio can provide access to the envoy proxy access logs, but it does not 
+provide an infrastructure for logging. 
+However, logging is often used to look inside the
 microservices and understand what they actually do. This can only be
-implemented in the code of the microservices. Still Istio could at
-least provide some very basic information in the logs without any
-impact on the code or the microservices.
+implemented in the code of the microservices.
 
 Istio allows to simulate problems in the system by injecting delays and
 faults. That is useful to test the system's resilience. Istio's
