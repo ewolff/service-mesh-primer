@@ -309,12 +309,14 @@ Istio introduces highly customizable authentication and authorization
 security features (see [section 3.5](#section-why-security)).
 
 The default installation profile turns on mutual TLS authentication (mTLS) 
-automatically. Any traffic inside the service mesh will be authenticated by 
-the client and server envoy proxies. The default option for mTLS is In the 
+automatically. Any traffic inside the service mesh will be encrypted and authenticated by 
+the client and server envoy proxies. The default option for mTLS is the 
 so-called "permissive mode", where proxies will accept both plaintext and 
 mTLS traffic. This feature is very valuable for migration to mTLS since it 
-ensures that requests from outside the meshed workloads won't break. 
-Once a connection has been upgraded to mTLS in permissive mode, a 
+ensures that requests from outside the mesh will still work. 
+
+In the example below,
+once a connection has been upgraded to mTLS in permissive mode, a 
 `PeerAuthentication` policy can be added to enforce mTLS. As a 
 consequence, all plaintext traffic arriving at pods with label `app: invoicing` 
 will be rejected.
@@ -332,11 +334,11 @@ spec:
     mode: STRICT
 ~~~~~~~~
 
-In addition to labels, `PeerAuthentication` Policies can be configured for 
+In addition to labels, `PeerAuthentication` policies can be configured for 
 a whole namespace and even a specific port. 
 
 Authentication policies are checked on the server proxy. To enforce mTLS 
-from on the client-side of the request too, a `DestinationRule` is to be 
+from on the client-side of the request too, a `DestinationRule` has to be 
 added like the listing shows:
 
 ```
@@ -362,7 +364,7 @@ for details.
 mTLS ensures that requests can only be read by trustworthy workloads 
 and are only accepted if they originate from known sources. It does, 
 however, not restrict communication. Any trusted service can call any 
-other service's endpoint. With Istio, the desired rules can be expressed 
+other service's endpoint. However, with Istio, the desired rules can be expressed 
 using `AuthorizationPolicys`. The listing below allows only workloads 
 in the `default` namespace to call the `invoicing` service (identified by 
 labels) using `GET` methods.
