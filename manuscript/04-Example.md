@@ -391,10 +391,9 @@ spec:
 
 Policies can allow or restrict (`DENY`) communication. They can apply to a 
 whole namespace, workloads matching specific labels, or even to HTTP 
-methods or ports. A source can be identified by namespace, the mTLS 
-client identifies (which defaults to the client service account). If a user 
-identity was extracted from a JWT, it can also be used as an
- `AuthorizationPolicy` source.
+methods or ports. A source can be a namespace, the mTLS 
+client identity (which defaults to the client service account), or even 
+a request principal extracted from a JWT.
 
 ## Resilience {#service-mesh-resilience}
 
