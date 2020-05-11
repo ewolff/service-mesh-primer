@@ -305,7 +305,95 @@ microservices.
 
 ## Security {#service-mesh-security}
 
-TODO!!!
+Istio introduces highly customizable authentication and authorization 
+security features (see [section 3.5](#section-why-security)).
+
+The default installation profile turns on mutual TLS authentication (mTLS) 
+automatically. Any traffic inside the service mesh will be encrypted and authenticated by 
+the client and server envoy proxies. The default option for mTLS is the 
+so-called "permissive mode", where proxies will accept both plaintext and 
+mTLS traffic. This feature is very valuable for migration to mTLS since it 
+ensures that requests from outside the mesh will still work. 
+
+In the example below,
+once a connection has been upgraded to mTLS in permissive mode, a 
+`PeerAuthentication` policy can be added to enforce mTLS. As a 
+consequence, all plaintext traffic arriving at pods with label `app: invoicing` 
+will be rejected.
+
+~~~~~~~~ {.yaml}
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: invoicing-policy
+spec:
+  selector:
+    matchLabels:
+      app: invoicing
+  mtls:
+    mode: STRICT
+~~~~~~~~
+
+In addition to labels, `PeerAuthentication` policies can be configured for 
+a whole namespace and even a specific port. 
+
+Authentication policies are checked on the server proxy. To enforce mTLS 
+from on the client-side of the request too, a `DestinationRule` has to be 
+added like the listing shows:
+
+~~~~~~~~ {.yaml}
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: invoicing
+spec:
+  host: invoicing
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+~~~~~~~~
+
+As a result, all requests leaving a proxy for the `invoicing` service will 
+be upgraded to mTLS.
+
+Using a service mesh like Istio for mTLS enables consistent service-to-service 
+authentication. Beyond that, Istio can also verify and extract end-user 
+authentication information from JSON Web Tokens (JWT). See the [official docs](https://istio.io/docs/tasks/security/authorization/authz-jwt/) 
+for details.
+
+mTLS ensures that requests can only be read by trustworthy workloads 
+and are only accepted if they originate from known sources. It does, 
+however, not restrict communication. Any trusted service can call any 
+other service's endpoint. However, with Istio, the desired rules can be expressed 
+using `AuthorizationPolicys`. The listing below allows only workloads 
+in the `default` namespace to call the `invoicing` service (identified by 
+labels) using `GET` methods.
+
+~~~~~~~~ {.yaml}
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+ name: invoicing-policy
+ namespace: foo
+spec:
+ selector:
+   matchLabels:
+     app: invoicing
+ action: ALLOW
+ rules:
+ - from:
+   - source:
+       namespaces: ["default"]
+   to:
+   - operation:
+       methods: ["GET"]
+~~~~~~~~
+
+Policies can allow or restrict (`DENY`) communication. They can apply to a 
+whole namespace, workloads matching specific labels, or even to HTTP 
+methods or ports. A source can be a namespace, the mTLS 
+client identity (which defaults to the client service account), or even 
+a request principal extracted from a JWT.
 
 ## Resilience {#service-mesh-resilience}
 
@@ -529,7 +617,6 @@ discuss:
 [example](https://istio.io/docs/tasks/observability/logs/access-log/)
 discusses how logs can be assembled from Envoys access logs. This
 example outputs the logs to stdout and not to a log infrastructure.
-
 
 ## Conclusion
 
