@@ -1,24 +1,28 @@
 title: "Service Mesh"
 subtitle: "The New Infrastructure for Microservices"
 author: 
-    - name: Hanna Prinz
-      bio: Foo
-      twitter: bar
-      image: baz
-    - name: Eberhard Wolff
-      bio: Foo
-      twitter: bar
-      image: baz
+  - name: Eberhard Wolff
+    bio: | 
+      Eberhard Wolff has 15+ years of experience as an architect and consultant - often on the intersection of business and technology. He is a Fellow. As a speaker, he has given talks at international conferences and he has written more than 100 articles and books e.g. about Microservices and Continuous Delivery. His technological focus is on modern architectures – often involving Cloud, Continuous Delivery, DevOps, or Microservices.
+    twitter: "@ewolff"
+    image: "images/authors/eberhard-wolff.jpg"
+  - name: Hanna Prinz
+    bio: | 
+      Hanna Prinz is a Consultant at INNOQ, focusing on Service Mesh and Infrastructure. 
+      Before that, she worked as a developer for backend, web and apps and as a lecturer for programming. Ever since she experienced the challenges of Ops, she has been most interested in the field of automation and DevOps like Kubernetes, CI/CD and Service Meshes.
+    twitter: "@HannaPrinz"
+    image: "images/authors/hanna-prinz.jpg"
 lang: en-US
-date: "August 2019"
+date: "May 2020"
 keywords: [Service Mesh, Kubernetes, Istio, Linkerd]
 toc: true
 isbn: 978-3-9821126-1-9
-edition: 1st Edition
-#about: true
+edition: 2nd Edition
+about:
+  heading: "About the authors"
 imprint:
     rights: |
-        Copyright © 2019 Hanna Prinz, Eberhard Wolff \
+        Copyright © 2020 Hanna Prinz, Eberhard Wolff \
         This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/deed.en_US).
     notes: This book is available at <http://leanpub.com/service-mesh-primer>.
 #lowertitleback-extra: |

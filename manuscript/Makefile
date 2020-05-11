@@ -4,8 +4,7 @@ PRIMER_TOOLCHAIN=gitlabregistry.innoq.com/innoq/tex-toolchain/primer-toolchain:l
 EBOOK_CONVERT=gitlabregistry.innoq.com/innoq/tex-toolchain/ebook-convert:latest
 
 # detect WSL and remove /mnt from pwd
-var := $(shell grep -q Microsoft /proc/version)
-ifneq ($(.SHELLSTATUS),0)
+ifeq ($(OS),Windows_NT)
   PWD := $(subst mnt/,,$(shell readlink -f ${PWD}))
 endif
 
