@@ -341,7 +341,7 @@ Authentication policies are checked on the server proxy. To enforce mTLS
 from on the client-side of the request too, a `DestinationRule` has to be 
 added like the listing shows:
 
-```
+~~~~~~~~ {.yaml}
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
@@ -351,7 +351,7 @@ spec:
   trafficPolicy:
     tls:
       mode: ISTIO_MUTUAL
-```
+~~~~~~~~
 
 As a result, all requests leaving a proxy for the `invoicing` service will 
 be upgraded to mTLS.
@@ -369,7 +369,7 @@ using `AuthorizationPolicys`. The listing below allows only workloads
 in the `default` namespace to call the `invoicing` service (identified by 
 labels) using `GET` methods.
 
-```
+~~~~~~~~ {.yaml}
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
@@ -387,7 +387,7 @@ spec:
    to:
    - operation:
        methods: ["GET"]
-```
+~~~~~~~~
 
 Policies can allow or restrict (`DENY`) communication. They can apply to a 
 whole namespace, workloads matching specific labels, or even to HTTP 
@@ -617,7 +617,6 @@ discuss:
 [example](https://istio.io/docs/tasks/observability/logs/access-log/)
 discusses how logs can be assembled from Envoys access logs. This
 example outputs the logs to stdout and not to a log infrastructure.
-
 
 ## Conclusion
 
